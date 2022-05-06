@@ -9,11 +9,17 @@ class Category {
 
 }
 
+class Family extends Category {
+    f = new Category("Friend");
+}
+
 class Character {
 
     f = 0;
     m = 0;
     k = 0;
+
+    familyFriendly = false;
 
     constructor(name, imagePath) {
         this.name = name;
@@ -24,6 +30,14 @@ class Character {
         this.f = 0;
         this.m = 0;
         this.k = 0;
+    }
+
+    setFamilyFriendly(boolean) {
+        this.familyFriendly = boolean;
+    }
+
+    getFamilyFriendly() {
+        return this.familyFriendly;
     }
 
     getImage() {
@@ -272,10 +286,15 @@ class View {
     }
 
     fillMap() {
-        this.titles.set(Category.f, "Most Fuckable:")
+        if (manager.getFamilyFriendly()) {
+            this.titles.set(Family.f, "Most Friendable:")
+        } else {
+            this.titles.set(Category.f, "Most Fuckable:")
+        }
         this.titles.set(Category.m, "Most Marriagable:")
         this.titles.set(Category.k, "Most Killable:")
     }
+
 
     createTexts() {
         let display = document.querySelectorAll(".displayHolder");
@@ -318,21 +337,43 @@ class View {
     }
 
 }
+
 let manager = new Manager();
 
-const Ganyu = new Character("Ganyu", "./Images/Character_Ganyu_Card.webp")
-const Diluc = new Character("Diluc", "./Images/Character_Diluc_Card.webp")
-const Yanfei = new Character("Yanfei", "./Images/Character_Yanfei_Card.webp")
+let regulars = [
+    new Character("Ganyu", "./Images/Character_Ganyu_Card.webp"),
+    new Character("Beidou", "Images/Character_Beidou_Card.webp"),
+    new Character("Diluc", "./Images/Character_Diluc_Card.webp"),
+    new Character("Yanfei", "./Images/Character_Yanfei_Card.webp"),
+    new Character("Ningguang", "./Images/Character_Ningguang_Card.webp"),
+    new Character("Sara", "Images/Character_Kujou_Sara_Card.webp"),
+    new Character("Keqing", "Images/Character_Keqing_Card.webp"),
+    new Character("Itto", "Images/Character_Arataki_Itto_Card.webp"),
+    new Character("Eula", "Images/Character_Eula_Card.webp"),
+    new Character("Beidou", "Images/Character_Beidou_Card.webp"),
+    new Character("Gorou", "Images/Character_Gorou_Card.webp"),
+    new Character("Jean", "Images/Character_Jean_Card.webp"),
+    new Character("Aether", "Images/Character_Male_Card.webp"),
+    new Character("Lumine", "Images/Character_Female_Card.webp"),
+    new Character("Hu Tao", "Images/Character_Hu_Tao_Card.webp"),
+    new Character("Kaedehara Kazuha", "Images/Character_Kaedehara_Kazuha_Card.webp"),
 
-const Ningguang = new Character("Ningguang", "./Images/Character_Ningguang_Card.webp")
-const Sara = new Character("Sara", "Images/Character_Kujou_Sara_Card.webp")
-const Keqing = new Character("Keqing", "Images/Character_Keqing_Card.webp")
-const Itto = new Character("Itto", "Images/Character_Arataki_Itto_Card.webp")
-const Fischl = new Character("Fischl", "Images/Character_Fischl_Card.webp")
-const Eula = new Character("Eula", "Images/Character_Eula_Card.webp")
-const Xinyan = new Character("Xinyan", "Images/Character_Xinyan_Card.webp")
 
-manager.addChar(Ganyu, Diluc, Yanfei, Ningguang, Sara, Keqing, Itto, Fischl, Eula, Xinyan);
+
+]
+
+manager.add(regulars);
+
+
+let kiddos = [
+    new Character("Chongyun", "Images/Character_Chongyun_Card.webp"),
+    new Character("Fischl", "Images/Character_Fischl_Card.webp"),
+    new Character("Xinyan", "Images/Character_Xinyan_Card.webp"),
+    new Character("Barbara", "Images/Character_Barbara_Card.webp"),
+    new Character("Diona", "Images/Character_Diona_Card.webp"),
+
+]
+manager.addChar();
 
 
 manager.playRound();
