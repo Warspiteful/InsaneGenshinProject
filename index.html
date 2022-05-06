@@ -48,7 +48,7 @@
     </div>
 
     <script type="module ">
-        const swappable = new Draggable.Swappable(document.querySelectorAll('.container'), { draggable: '.item', mirror: { appendTo: ".container", constrainDimensions: true, }, plugins: [Draggable.Plugins.ResizeMirror] });
+        const swappable = new Draggable.Swappable(document.querySelectorAll('.container'), { delay: 50, draggable: '.item', mirror: { appendTo: ".container", constrainDimensions: true, }, plugins: [Draggable.Plugins.ResizeMirror] });
 
     </script>
     <script src="main.js " async defer></script>
