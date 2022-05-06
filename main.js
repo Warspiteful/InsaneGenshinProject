@@ -190,7 +190,6 @@ class Manager {
         this.calculateReturnPoints(F, [M, K], Category.f);
         this.calculateReturnPoints(M, [F, K], Category.m);
         this.calculateReturnPoints(K, [M, F], Category.k);
-        manager.playRound();
 
     }
 
@@ -232,13 +231,43 @@ class Manager {
             container.appendChild(img);
             img.classList.add("item");
             img.style = "margins: 0 auto;"
-
-
         }
-
     }
 }
 
+
+class View {
+
+    titles = new Map();
+
+    constructor(model) {
+        this.model = model;
+        this.fillMap();
+    }
+
+    updateModel(model) {
+        this.model = model;
+    }
+
+    fillMap() {
+        titles.set(Category.f, "Most Fuckable:")
+        titles.set(Category.m, "Most Marriagable:")
+        titles.set(Category.k, "Most Killable:")
+    }
+
+    updateTexts() {
+
+        let cats = document.querySelectorAll(".displayTexts");
+
+
+    }
+
+    renderRanks() {
+
+        alert()
+    }
+
+}
 let manager = new Manager();
 
 const Ganyu = new Character("Ganyu", "./Images/Character_Ganyu_Card.webp")
@@ -258,6 +287,8 @@ manager.addChar(Ganyu, Diluc, Yanfei, Ningguang, Sara, Keqing, Itto, Fischl, Eul
 
 manager.playRound();
 
+let textView = new View(manager);
+
 
 document.getElementById("submitAnswer").onclick = function() //Runs code when button is pressed
     {
@@ -272,5 +303,8 @@ document.getElementById("submitAnswer").onclick = function() //Runs code when bu
         }
 
         manager.selectFMK(chars.get("Fuck"), chars.get("Marry"), chars.get("Kill"));
+        View.updateModel(manager);
+        manager.playRound();
+
 
     }

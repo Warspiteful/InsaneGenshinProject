@@ -26,14 +26,39 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-    <div class="center">
-        <input type="submit" value="Submit Answer" class="buttons" id="submitAnswer">
+    <div id="UI" class="d-flex flex-row justify-stretch">
+        <div class="col-md-4">
+            <div id="Padding?" style="height: 10%"></div>
+            <div id="displayHolder">
+                <div class="textDisplay">
+                    <p id="Fuck">Most Fuckable: </p>
+                </div>
+                <div class="textDisplay">
+                    <p id="Marry">Most Marriagable: </p>
+                </div>
+                <div class="textDisplay">
+                    <p id="Kill">Most Killable: </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="center " style="height: 100px;">
+                <input type="submit" value="Submit Answer" class="buttons " id="submitAnswer">
+            </div>
+            <div class="center " style="height: 10px;">
+                <input type="submit" value="Show Results" class="buttons" id="submitAnswer">
+            </div>
+        </div>
+
+
+
+
     </div>
 
-    <script type="module">
+    <script type="module ">
         const swappable = new Draggable.Swappable(document.querySelectorAll('.container'), { draggable: '.item' });
     </script>
-    <script src="main.js" async defer></script>
+    <script src="main.js " async defer></script>
 
 
 </body>
