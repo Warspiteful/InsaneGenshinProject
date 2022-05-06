@@ -199,7 +199,7 @@ class Manager {
 
         let divider = document.createElement("div");
 
-        divider.classList.add("col-md-2");
+        divider.classList.add("col-md-4");
         src.appendChild(divider);
 
         let label = document.createElement("h1");

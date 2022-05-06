@@ -31,8 +31,7 @@
     </div>
 
     <script type="module">
-        const swappable = new Draggable.Swappable(document.querySelectorAll('.container'), { draggable: '.item' }); swappable.on('swappable:start', () => console.log('swappable:start')); swappable.on('swappable:swapped', () => console.log('swappable:swapped'));
-        swappable.on('swappable:stop', () => console.log('swappable:stop'));
+        const swappable = new Draggable.Swappable(document.querySelectorAll('.container'), { draggable: '.item' });
     </script>
     <script src="main.js" async defer></script>
 
