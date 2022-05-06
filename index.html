@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html class="no-js lt-ie9 lt-ie8 lt-ie7">
+<html class="no-js lt-ie9 lt-ie8">
+<html class="no-js lt-ie9">
+<html class="no-js">
 <html>
 
 <head>
@@ -12,7 +12,7 @@
     <meta name="description" content="This is an insane little program I made because FMK has a lot of data, and I like data.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.legacy.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.12/lib/draggable.bundle.legacy.js"></script>
     <link href="style.css" type="text/css" rel="stylesheet">
     <link rel="shortcut icon" href="/Images/favicon.ico">
     <link href="bootstrap.css" type="text/css" rel="stylesheet">
@@ -54,10 +54,19 @@
 
     </div>
 
-    <script type="module ">
-        const swappable = new Draggable.Swappable(document.querySelectorAll('.container'), { delay: 50, draggable: '.item', mirror: { appendTo: ".container", constrainDimensions: true, }, plugins: [Draggable.Plugins.ResizeMirror] });
-
+    <script>
+        const swappable = new Draggable.Swappable(document.querySelectorAll('.container'), {
+            draggable: '.item',
+            mirror: {
+                appendTo: ".container",
+                constrainDimensions: true,
+            },
+            plugins: [Draggable.Plugins.ResizeMirror]
+        });
+        console.log("Hi")
     </script>
+
+
     <script src="main.js " async defer></script>
 
 
