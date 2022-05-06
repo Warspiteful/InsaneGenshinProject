@@ -5,7 +5,18 @@
     height: 100px;
 }
 
+.align {
+    justify-content: center;
+    align-items: center;
+}
+
+.category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .item {
-    width: 90%;
+    width: 65%;
     height: auto;
 }

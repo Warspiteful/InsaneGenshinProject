@@ -202,8 +202,9 @@ class Manager {
         divider.classList.add("col-md-4");
         src.appendChild(divider);
 
-        let label = document.createElement("h1");
+        let label = document.createElement("h2");
         label.innerText = categoryName;
+        label.style = "text-align: center;"
 
 
         let container = document.createElement("div");
@@ -230,6 +231,7 @@ class Manager {
             img.id = roundChars[i].getName();
             container.appendChild(img);
             img.classList.add("item");
+            img.style = "margins: 0 auto;"
 
 
         }
