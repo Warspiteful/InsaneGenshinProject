@@ -199,7 +199,7 @@ class Manager {
 
         let divider = document.createElement("div");
 
-        divider.classList.add("col-md-6");
+        divider.classList.add("col-md-2");
         src.appendChild(divider);
 
         let label = document.createElement("h1");
@@ -270,6 +270,5 @@ document.getElementById("submitAnswer").onclick = function() //Runs code when bu
         }
 
         manager.selectFMK(chars.get("Fuck"), chars.get("Marry"), chars.get("Kill"));
-
 
     }
