@@ -13,15 +13,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="">
     <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.8/lib/draggable.bundle.js"></script>
+    <link href="style.css" type="text/css" rel="stylesheet">
+
+    <link href="bootstrap.css" type="text/css" rel="stylesheet">
 
 </head>
 
 <body>
 
-    <div id="imageHolder" class="container"></div>
+    <div id="imageHolder" class="container d-flex flex-row justify-stretch"></div>
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+
+    <div class="center">
+        <input type="submit" value="Submit Answer" class="buttons" id="submitAnswer">
+    </div>
 
     <script type="module">
         const swappable = new Draggable.Swappable(document.querySelectorAll('.container'), { draggable: '.item' }); swappable.on('swappable:start', () => console.log('swappable:start')); swappable.on('swappable:swapped', () => console.log('swappable:swapped'));

@@ -163,6 +163,9 @@ class Manager {
     calculateReturnPoints(selected, others, type) {
         let val = 0;
 
+        console.log("Selected " + selected.getName() + " for " + type.name);
+
+
         for (var i = 0; i < others.length; i++) {
             if (others[i] instanceof Character) {
 
@@ -187,35 +190,52 @@ class Manager {
         this.calculateReturnPoints(F, [M, K], Category.f);
         this.calculateReturnPoints(M, [F, K], Category.m);
         this.calculateReturnPoints(K, [M, F], Category.k);
+        manager.playRound();
+
     }
 
 
-    createCategory(categoryName) {
+    createCategory(src, categoryName) {
+
+        let divider = document.createElement("div");
+
+        divider.classList.add("col-md-6");
+        src.appendChild(divider);
+
+        let label = document.createElement("h1");
+        label.innerText = categoryName;
+
+
         let container = document.createElement("div");
         container.id = categoryName;
-        let src = document.getElementById("imageHolder");
-        src.appendChild(container);
+        container.classList = "category";
+
+        divider.appendChild(label);
+
+        divider.appendChild(container);
         return container;
     }
 
     playRound() {
+        let src = document.getElementById("imageHolder");
+        while (src.lastElementChild) {
+            src.removeChild(src.lastElementChild);
+        }
+
         let roundChars = this.getRandomChars(3);
         for (let i = 0; i < roundChars.length; i++) {
-            let container = this.createCategory(Object.keys(Category)[i]);
+            let container = this.createCategory(src, Object.values(Category)[i].name);
             let img = document.createElement("img");
             img.src = roundChars[i].getImage();
             img.id = roundChars[i].getName();
             container.appendChild(img);
             img.classList.add("item");
 
+
         }
-
-
 
     }
 }
-
-
 
 let manager = new Manager();
 
@@ -236,4 +256,20 @@ manager.addChar(Ganyu, Diluc, Yanfei, Ningguang, Sara, Keqing, Itto, Fischl, Eul
 
 manager.playRound();
 
-console.log("Hi");
+
+document.getElementById("submitAnswer").onclick = function() //Runs code when button is pressed
+    {
+        let cats = document.querySelectorAll(".category");
+
+        let chars = new Map();
+        for (let i = 0; i < cats.length; i++) {
+            let img = cats[i].querySelectorAll('.item')
+            console.log(img[0].id)
+            console.log(cats[i].childNodes)
+            chars.set(cats[i].id, img[0].id);
+        }
+
+        manager.selectFMK(chars.get("Fuck"), chars.get("Marry"), chars.get("Kill"));
+
+
+    }
