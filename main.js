@@ -190,13 +190,22 @@ class Manager {
     }
 
 
+    createCategory(categoryName) {
+        let container = document.createElement("div");
+        container.id = categoryName;
+        let src = document.getElementById("imageHolder");
+        src.appendChild(container);
+        return container;
+    }
+
     playRound() {
         let roundChars = this.getRandomChars(3);
-        let src = document.getElementById("imageHolder");
         for (let i = 0; i < roundChars.length; i++) {
+            let container = this.createCategory(Object.keys(Category)[i]);
             let img = document.createElement("img");
             img.src = roundChars[i].getImage();
-            src.appendChild(img);
+            img.id = roundChars[i].getName();
+            container.appendChild(img);
             img.classList.add("item");
 
         }
