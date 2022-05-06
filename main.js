@@ -32,13 +32,7 @@ class Character {
         this.k = 0;
     }
 
-    setFamilyFriendly(boolean) {
-        this.familyFriendly = boolean;
-    }
 
-    getFamilyFriendly() {
-        return this.familyFriendly;
-    }
 
     getImage() {
         return this.imagePath;
@@ -109,10 +103,20 @@ class Manager {
 
     characters = [];
 
-    addChar(...args) {
-        for (var i = 0; i < args.length; i++) {
-            if (args[i] instanceof Character) {
-                this.characters.push(args[i]);
+    familyFriendly = false;
+
+    setFamilyFriendly(boolean) {
+        this.familyFriendly = boolean;
+    }
+
+    getFamilyFriendly() {
+        return this.familyFriendly;
+    }
+
+    addChar(charList) {
+        for (var i = 0; i < charList.length; i++) {
+            if (charList[i] instanceof Character) {
+                this.characters.push(charList[i]);
 
             } else {
                 console.log("Failed to add")
@@ -325,7 +329,7 @@ class View {
     updateTexts() {
 
         this.displays.forEach((value, key) => {
-            let title = value.innerText.split(': ')[0];
+            let title = value.innerText.split(':')[0];
             value.innerText = title + ": " + manager.getMax(key);
         });
     }
@@ -353,16 +357,33 @@ let regulars = [
     new Character("Beidou", "Images/Character_Beidou_Card.webp"),
     new Character("Gorou", "Images/Character_Gorou_Card.webp"),
     new Character("Jean", "Images/Character_Jean_Card.webp"),
-    new Character("Aether", "Images/Character_Male_Card.webp"),
-    new Character("Lumine", "Images/Character_Female_Card.webp"),
+    new Character("Aether", "Images/Traveler_Male_Card.webp"),
+    new Character("Lumine", "Images/Traveler_Female_Card.webp"),
     new Character("Hu Tao", "Images/Character_Hu_Tao_Card.webp"),
     new Character("Kaedehara Kazuha", "Images/Character_Kaedehara_Kazuha_Card.webp"),
-
-
-
+    new Character("Kaeya", "Images/Character_Kaeya_Card.webp"),
+    new Character("Kamisato Ayaka", "Images/Character_Kamisato_Ayaka_Card.webp"),
+    new Character("Kamisato Ayato", "Images/Character_Kamisato_Ayato_Card.webp"),
+    new Character("Kuki Shinobu", "Images/Character_Kuki_Shinobu_Card.webp"),
+    new Character("Lisa", "Images/Character_Lisa_Card.webp"),
+    new Character("Mona", "Images/Character_Mona_Card.webp"),
+    new Character("Rosaria", "Images/Character_Rosaria_Card.webp"),
+    new Character("Sangonomiya Kokomi", "Images/Character_Sangonomiya_Kokomi_Card.webp"),
+    new Character("Shenhe", "Images/Character_Shenhe_Card.webp"),
+    new Character("Childe", "Images/Character_Tartaglia_Card.webp"),
+    new Character("Thoma", "Images/Character_Thoma_Card.webp"),
+    new Character("Venti", "Images/Character_Venti_Card.webp"),
+    new Character("Xiao", "Images/Character_Xiao_Card.webp"),
+    new Character("Yae Miko", "Images/Character_Yae_Miko_Card.webp"),
+    new Character("Yelan", "Images/Character_Yelan_Card.webp"),
+    new Character("Yoimiya", "Images/Character_Yoimiya_Card.webp"),
+    new Character("Yun Jin", "Images/Character_Yun_Jin_Card.webp"),
+    new Character("Zhongli", "Images/Character_Zhongli_Card.webp"),
+    new Character("Albedo", "Images/Character_Albedo_Card.webp"),
+    new Character("Amber", "Images/Character_Amber_Card.webp"),
 ]
 
-manager.add(regulars);
+manager.addChar(regulars);
 
 
 let kiddos = [
@@ -371,9 +392,17 @@ let kiddos = [
     new Character("Xinyan", "Images/Character_Xinyan_Card.webp"),
     new Character("Barbara", "Images/Character_Barbara_Card.webp"),
     new Character("Diona", "Images/Character_Diona_Card.webp"),
-
+    new Character("Klee", "Images/Character_Klee_Card.webp"),
+    new Character("Noelle", "Images/Character_Noelle_Card.webp"),
+    new Character("Qiqi", "Images/Character_Qiqi_Card.webp"),
+    new Character("Razor", "Images/Character_Razor_Card.webp"),
+    new Character("Sayu", "Images/Character_Sayu_Card.webp"),
+    new Character("Sucrose", "Images/Character_Sucrose_Card.webp"),
+    new Character("Xiangling", "Images/Character_Xiangling_Card.webp"),
+    new Character("Xingqiu", "Images/Character_Xingqiu_Card.webp"),
 ]
-manager.addChar();
+
+let Alloy = new Character("Aloy", "Images/Character_Aloy_Card.webp");
 
 
 manager.playRound();
