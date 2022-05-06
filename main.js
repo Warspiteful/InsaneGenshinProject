@@ -58,6 +58,10 @@ class Character {
         return this.name;
     }
 
+    getvals() {
+        return [this.f, this.m, this.k];
+    }
+
     parseIncrement(val, type) {
         switch (type) {
             case Category.f:
@@ -65,8 +69,10 @@ class Character {
                 break;
             case Category.k:
                 this.incrementKill(val);
+                break;
             case Category.m:
                 this.incrementMarry(val);
+                break;
         }
     }
 
@@ -115,7 +121,10 @@ class Manager {
         }
 
         return result;
+    }
 
+    getCharArray(characterName) {
+        return this.getCharacter(characterName).getvals();
     }
 
     retrieveIndex(characterName) {
@@ -163,7 +172,6 @@ class Manager {
     calculateReturnPoints(selected, others, type) {
         let val = 0;
 
-        console.log("Selected " + selected.getName() + " for " + type.name);
 
 
         for (var i = 0; i < others.length; i++) {
@@ -180,6 +188,7 @@ class Manager {
         if (selected instanceof Character) {
             selected.parseIncrement(val, type);
         }
+
     }
 
     selectFMK(F, M, K) {
@@ -190,6 +199,8 @@ class Manager {
         this.calculateReturnPoints(F, [M, K], Category.f);
         this.calculateReturnPoints(M, [F, K], Category.m);
         this.calculateReturnPoints(K, [M, F], Category.k);
+
+
 
     }
 
@@ -233,6 +244,13 @@ class Manager {
             img.style = "margins: 0 auto;"
         }
     }
+
+    getMax(category) {
+        let sorted = this.characters.slice().sort((a, b) => a.parseReturn(category) - b.parseReturn(category));
+
+        return sorted.pop().getName();
+
+    }
 }
 
 
@@ -240,31 +258,63 @@ class View {
 
     titles = new Map();
 
+    displays = new Map();
+
     constructor(model) {
         this.model = model;
         this.fillMap();
+        this.createTexts();
     }
 
     updateModel(model) {
         this.model = model;
+        this.updateTexts();
     }
 
     fillMap() {
-        titles.set(Category.f, "Most Fuckable:")
-        titles.set(Category.m, "Most Marriagable:")
-        titles.set(Category.k, "Most Killable:")
+        this.titles.set(Category.f, "Most Fuckable:")
+        this.titles.set(Category.m, "Most Marriagable:")
+        this.titles.set(Category.k, "Most Killable:")
+    }
+
+    createTexts() {
+        let display = document.querySelectorAll(".displayHolder");
+
+        if (display.length > 1) {
+            throw new RangeError("Detected too many displays");
+        }
+
+        display = display[0];
+
+
+        this.titles.forEach((value, key) => {
+
+            let disp = document.createElement("div");
+            disp.classList.add("textDisplay");
+            let title = document.createElement("p");
+            title.id = key.name;
+            title.innerText = value;
+            display.appendChild(disp);
+            disp.appendChild(title);
+
+            this.displays.set(key, title);
+        })
+
+
     }
 
     updateTexts() {
 
-        let cats = document.querySelectorAll(".displayTexts");
-
-
+        this.displays.forEach((value, key) => {
+            let title = value.innerText.split(': ')[0];
+            value.innerText = title + ": " + manager.getMax(key);
+        });
     }
 
-    renderRanks() {
-
-        alert()
+    renderList() {
+        let string = "";
+        manager.getCharactersStored().forEach((name) => string = string.concat(name + " " + manager.getCharArray(name) + "\n"))
+        alert(string)
     }
 
 }
@@ -297,14 +347,17 @@ document.getElementById("submitAnswer").onclick = function() //Runs code when bu
         let chars = new Map();
         for (let i = 0; i < cats.length; i++) {
             let img = cats[i].querySelectorAll('.item')
-            console.log(img[0].id)
-            console.log(cats[i].childNodes)
+
             chars.set(cats[i].id, img[0].id);
         }
 
         manager.selectFMK(chars.get("Fuck"), chars.get("Marry"), chars.get("Kill"));
-        View.updateModel(manager);
+        textView.updateModel(manager);
         manager.playRound();
 
+    }
 
+document.getElementById(" Results").onclick = function() //Runs code when button is pressed
+    {
+        textView.renderList();
     }
