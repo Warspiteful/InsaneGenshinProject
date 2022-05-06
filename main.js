@@ -197,6 +197,7 @@ class Manager {
             let img = document.createElement("img");
             img.src = roundChars[i].getImage();
             src.appendChild(img);
+            img.classList.add("item");
 
         }
 
@@ -219,7 +220,7 @@ const Keqing = new Character("Keqing", "Images/Character_Keqing_Card.webp")
 const Itto = new Character("Itto", "Images/Character_Arataki_Itto_Card.webp")
 const Fischl = new Character("Fischl", "Images/Character_Fischl_Card.webp")
 const Eula = new Character("Eula", "Images/Character_Eula_Card.webp")
-const Xinyan = new Character("Xinyan", "Images/Character_Sara_Card.webp")
+const Xinyan = new Character("Xinyan", "Images/Character_Xinyan_Card.webp")
 
 manager.addChar(Ganyu, Diluc, Yanfei, Ningguang, Sara, Keqing, Itto, Fischl, Eula, Xinyan);
 

@@ -1,0 +1,20 @@
+{
+    "name": "insanegenshinproject",
+    "version": "1.0.0",
+    "description": "Fuck Marry Kill for Genshin Characters",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Warspiteful/InsaneGenshinProject.git"
+    },
+    "author": "warspiteful",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Warspiteful/InsaneGenshinProject/issues"
+    },
+    "homepage": "https://github.com/Warspiteful/InsaneGenshinProject#readme",
+
+}
