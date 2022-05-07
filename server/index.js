@@ -6,19 +6,8 @@ const port = 3000
 
 var mysql = require('mysql');
 
-let url = new URL(process.env.CLEARDB_DATABASE_URL);
 
-let server = url["host"];
-let username = url["user"];
-let password = url["pass"];
-let db = url["pathname"].substring(1);
-
-var con = mysql.createConnection({
-    server,
-    username,
-    password,
-    db
-});
+var con = mysql.createConnection(process.env.CLEARDB_DATABASE_URL);
 
 // We are using our packages here
 app.use(bodyParser.json()); // to support JSON-encoded bodies
