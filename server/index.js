@@ -28,18 +28,18 @@ app.get('/', (req, res) => {
 app.post('/submit', (req, res) => {
 
     console.log("Connected!");
-    var sql = "UPDATE characterdb SET f_val = 1 + f_val WHERE name = '" + req.body.fuck + "'";
+    var sql = "UPDATE characterdb SET f_val = 1 + f_val WHERE charName = '" + req.body.fuck + "'";
     con.query(sql, function(err, result) {
         if (err) throw err;
         console.log("Result: " + result);
     });
-    var sql = "UPDATE characterdb SET m_val = 1 + m_val WHERE name = '" + req.body.marry + "'";
+    var sql = "UPDATE characterdb SET m_val = 1 + m_val WHERE charName = '" + req.body.marry + "'";
     con.query(sql, function(err, result) {
         if (err) throw err;
         console.log("Result: " + result);
     });
 
-    var sql = "UPDATE characterdb SET k_val = 1 + k_val WHERE name = '" + req.body.kill + "'";
+    var sql = "UPDATE characterdb SET k_val = 1 + k_val WHERE charName = '" + req.body.kill + "'";
     con.query(sql, function(err, result) {
         if (err) throw err;
         console.log("Result: " + result);
