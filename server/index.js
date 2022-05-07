@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -7,7 +9,8 @@ const port = 3000
 var mysql = require('mysql');
 
 
-var con = mysql.createConnection(new URL(process.env.CLEARDB_DATABASE_URL));
+
+var con = mysql.createConnection(process.env.CLEARDB_DATABASE_URL);
 
 // We are using our packages here
 app.use(bodyParser.json()); // to support JSON-encoded bodies
