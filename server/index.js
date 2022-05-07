@@ -8,9 +8,7 @@ const port = 3000
 
 var mysql = require('mysql');
 
-
-
-var con = mysql.createConnection(process.env.CLEARDB_DATABASE_URL);
+var con = mysql.createPool(process.env.CLEARDB_DATABASE_URL);
 
 // We are using our packages here
 app.use(bodyParser.json()); // to support JSON-encoded bodies
@@ -48,7 +46,7 @@ app.post('/submit', (req, res) => {
     });
 })
 
-con.connect(function(err) {
+con.getConnection(function(err) {
     if (err) throw err;
     console.log("Connected!");
 
