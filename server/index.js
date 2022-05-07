@@ -62,6 +62,6 @@ app.post('/signup', (req, res) => {
 })
 
 //Start your server on a specified port
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log(`Server is runing on port ${port}`)
 })
