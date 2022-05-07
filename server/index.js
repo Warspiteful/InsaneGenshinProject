@@ -11,7 +11,7 @@ let url = new URL(process.env.CLEARDB_DATABASE_URL);
 let server = url["host"];
 let username = url["user"];
 let password = url["pass"];
-let db = substr(url["path"], 1);
+let db = url["path"].substring(1);
 
 var con = mysql.createConnection({
     server,
