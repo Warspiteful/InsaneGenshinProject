@@ -45,7 +45,7 @@ app.post('/submit', (req, res) => {
         console.log("Result: " + result);
     });
 
-    res.send("Updated Vals")
+    res.redirect('back')
 })
 
 con.getConnection(function(err) {
