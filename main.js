@@ -222,36 +222,7 @@ class Manager {
 
     }
 
-
-    createCategory(src, categoryName) {
-
-        let divider = document.createElement("div");
-
-        divider.classList.add("col-md-4");
-        src.appendChild(divider);
-
-        let label = document.createElement("h2");
-        label.innerText = categoryName;
-        label.style = "text-align: center;"
-
-
-        let container = document.createElement("div");
-        container.id = categoryName;
-        container.classList = "category";
-
-        divider.appendChild(label);
-
-        divider.appendChild(container);
-        return container;
-    }
-
     playRound() {
-        let src = document.getElementById("imageHolder");
-        while (src.lastElementChild) {
-            src.removeChild(src.lastElementChild);
-        }
-
-        let roundChars = this.getRandomChars(3);
         for (let i = 0; i < roundChars.length; i++) {
             let container = this.createCategory(src, Object.values(Category)[i].name);
             let img = document.createElement("img");
@@ -272,7 +243,56 @@ class Manager {
 }
 
 
+
+class Controller {
+    constructor(model, view) {
+
+        this.view = view;
+        this.model = model;
+        view.setupTexts();
+        model.playRound();
+    }
+
+    playRound() {
+        let roundChars = manager.getRandomChars(3);
+
+    }
+
+    getAnalysis() {
+
+    }
+
+    display()
+
+
+}
+
 class View {
+
+
+    createCategory(categoryName) {
+
+        let src = document.getElementById("imageHolder");
+
+        let divider = document.createElement("div");
+
+        divider.classList.add("col-md-4");
+        src.appendChild(divider);
+
+        let label = document.createElement("h2");
+        label.innerText = categoryName;
+        label.style = "text-align: center;"
+
+
+        let container = document.createElement("div");
+        container.id = categoryName;
+        container.classList = "category";
+
+        divider.appendChild(label);
+
+        divider.appendChild(container);
+        return container;
+    }
 
     titles = new Map();
 
@@ -342,6 +362,31 @@ class View {
 
 }
 
+document.getElementById("submitAnswer").onclick = function() //Runs code when button is pressed
+    {
+        let cats = document.querySelectorAll(".category");
+
+        let chars = new Map();
+        for (let i = 0; i < cats.length; i++) {
+            let img = cats[i].querySelectorAll('.item')
+
+            chars.set(cats[i].id, img[0].id);
+        }
+
+        manager.selectFMK(chars.get("Fuck"), chars.get("Marry"), chars.get("Kill"));
+        textView.updateModel(manager);
+        manager.playRound();
+
+    }
+
+document.getElementById(" Results").onclick = function() //Runs code when button is pressed
+    {
+        textView.renderList();
+    }
+
+
+
+
 let manager = new Manager();
 
 let regulars = [
@@ -354,7 +399,7 @@ let regulars = [
     new Character("Keqing", "Images/Character_Keqing_Card.webp"),
     new Character("Itto", "Images/Character_Arataki_Itto_Card.webp"),
     new Character("Eula", "Images/Character_Eula_Card.webp"),
-    new Character("Beidou", "Images/Character_Beidou_Card.webp"),
+    new Character("Raiden Shogun", "Images/Character_Beidou_Card.webp"),
     new Character("Gorou", "Images/Character_Gorou_Card.webp"),
     new Character("Jean", "Images/Character_Jean_Card.webp"),
     new Character("Aether", "Images/Traveler_Male_Card.webp"),
@@ -405,29 +450,4 @@ let kiddos = [
 let Alloy = new Character("Aloy", "Images/Character_Aloy_Card.webp");
 
 
-manager.playRound();
-
-let textView = new View(manager);
-
-
-document.getElementById("submitAnswer").onclick = function() //Runs code when button is pressed
-    {
-        let cats = document.querySelectorAll(".category");
-
-        let chars = new Map();
-        for (let i = 0; i < cats.length; i++) {
-            let img = cats[i].querySelectorAll('.item')
-
-            chars.set(cats[i].id, img[0].id);
-        }
-
-        manager.selectFMK(chars.get("Fuck"), chars.get("Marry"), chars.get("Kill"));
-        textView.updateModel(manager);
-        manager.playRound();
-
-    }
-
-document.getElementById(" Results").onclick = function() //Runs code when button is pressed
-    {
-        textView.renderList();
-    }
+let controller = new Controller(manager)
