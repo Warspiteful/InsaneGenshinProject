@@ -6,10 +6,18 @@ const port = 3000
 
 var mysql = require('mysql');
 
+let url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+let server = url["host"];
+let username = url["user"];
+let password = url["pass"];
+let db = substr(url["path"], 1);
+
 var con = mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",
-    database: "genshinfmk"
+    server,
+    username,
+    password,
+    db
 });
 
 // We are using our packages here
