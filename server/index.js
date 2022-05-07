@@ -6,7 +6,7 @@ const port = 3000
 
 var mysql = require('mysql');
 
-let url = new URL(getenv("CLEARDB_DATABASE_URL"));
+let url = new URL(process.env.CLEARDB_DATABASE_URL);
 
 let server = url["host"];
 let username = url["user"];
