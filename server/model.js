@@ -19,7 +19,10 @@ var category = {
 }
 
 
-class Model {
+import { readModel } from './readModel';
+
+
+export class Model extends readModel {
 
     multiplier = .5;
 
@@ -28,26 +31,8 @@ class Model {
         return Object.values(JSON.parse(JSON.stringify(result)));
     }
 
-    getRandomChars(num) {
-        return this.parseIntoArray(
-            this.executeSQL("SELECT charName, Image FROM characterdb ORDER BY RAND() LIMIT " + num + ";")
-        );
-    }
 
-    getCharArray(characterName) {
-        return this.parseIntoArray(
-            this.executeSQL("SELECT f_val,m_val,k_val FROM characterdb WHERE charName = '" + characterName + "';")
-        )
-
-    }
-
-    getImage(characterName) {
-        return this.parseData(
-            this.executeSQL("SELECT Image FROM characterdb WHERE charName = '" + characterName + "';")
-        );
-    }
-
-    getCharactersStored() {
+    async getCharactersStored() {
         let nameArray = []
         this.parseIntoArray(
             this.executeSQL("SELECT charName FROM characterdb;")
@@ -55,26 +40,20 @@ class Model {
         return nameArray
     }
 
-    /**
-     * 
-     * @param {Text} characterName 
-     * @returns 
-     */
-    getCharacter(characterName) {
-        return this.executeSQL("SELECT * FROM characterdb WHERE charName = '" + characterName + "'");
-
-    }
-
     calculateReturnPoints(selected, others, type) {
         let val = 0;
 
-        for (var i = 0; i < others.length; i++) {
-            val += this.multiplier * (this.parseReturn(others[i], type) - this.parseReturn(selected, type));
-            if (val < 1) {
-                val = 1;
+        (async function() {
+
+            for (var i = 0; i < others.length; i++) {
+                val += this.multiplier * (await this.parseReturn(others[i], type) - await this.parseReturn(selected, type));
+                if (val < 1) {
+                    val = 1;
+                }
             }
-        }
-        this.parseIncrement(selected, val, type);
+            this.parseIncrement(selected, val, type);
+        })
+
     }
 
     parseData(result) {
@@ -82,12 +61,10 @@ class Model {
         return Object.values(result[0])[0]
     }
 
-    parseReturn(char, type) {
-        return this.parseData(this.executeSQL("SELECT " + type + " FROM characterdb WHERE charName = '" + char + "';"));
-    }
+
 
     parseIncrement(char, val, type) {
-        this.executeSQL("UPDATE characterdb SET " + type + " =  " + type + " + " + val + " WHERE name = '" + char.name + "'");
+        this.executeSQL("UPDATE characterdb SET " + type + " =  " + type + " + " + val + " WHERE charName = '" + char.name + "'");
     }
 
     selectFMK(F, M, K) {
@@ -119,10 +96,6 @@ class Model {
         return Object.keys(category)
     }
 
-    executeSQL(sql) {
-        con.query(sql, function(err, result) {
-            if (err) throw err;
-            return result;
-        });
-    }
+
+
 }

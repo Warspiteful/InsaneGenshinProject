@@ -28,20 +28,32 @@ function parseIntoArray(result) {
 
 function getCharactersStored() {
 
+    type = "m_val"
+    charName = "Keqing"
+    category = "Element"
+    val = 3
 
-    let sql = "SELECT charName FROM characterdb;"
-    console.log(executeSQL(sql))
+    let sql = "SELECT " + type + " FROM characterdb WHERE charName = '" + charName + "'";
+
+    (async function() {
+        val = await executeSQL(sql);
+
+        console.log(parse(val));
+    })()
 
 }
 
-function executeSQL(sql) {
-
-    let re = ""
-    return new Promise(data => {
+async function executeSQL(sql) {
+    console.log(sql);
+    const pro = new Promise(resolve => {
         con.query(sql, function(err, result) {
             if (err) throw err;
-            data(result);
+            resolve(result);
         })
+    });
+
+    return pro.then((val) => {
+        return val;
     })
 };
 
@@ -54,7 +66,9 @@ con.connect(function(err) {
     num = 3
     if (err) throw err;
     console.log("Connected!");
-    var sql = "SELECT charName FROM characterdb;"
-    getCharactersStored()
 
-});
+    getCharactersStored();
+
+
+
+})

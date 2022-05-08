@@ -1,3 +1,5 @@
+//@ts-check
+
 class View {
 
     titles = new Map();
@@ -33,7 +35,7 @@ class View {
             throw new RangeError("Detected too many displays");
         }
 
-        display = display[0];
+        let element = display[0];
 
 
         this.titles.forEach((value, key) => {
@@ -43,7 +45,7 @@ class View {
             let title = document.createElement("p");
             title.id = key.name;
             title.innerText = value;
-            display.appendChild(disp);
+            element.appendChild(disp);
             disp.appendChild(title);
 
             this.displays.set(key, title);
@@ -69,65 +71,40 @@ class View {
 
 
     updateCharacters(imageNameArray) {
-        let display = document.querySelectorAll(".charDisplay");
+        let display = document.querySelectorAll(".charDisplay[type='img']");
 
         for (let i = 0; i < display.length; i++) {
-            disp[i].id = imageArray[i].name;
-            disp[i].img = imageArray[i].image;
+            if (!(display[i] instanceof HTMLImageElement)) {
 
+            }
+            display[i].id = imageNameArray[i].name;
+            // @ts-ignore
+            display[i].src = imageNameArray[i].image;
         }
-
-
     }
 
+
+    createHolders(category) {
+
+        let src = document.getElementById("imageHolder");
+
+        for (let categoryName in category) {
+            let divider = document.createElement("div");
+
+            divider.classList.add("col-md-4");
+            src.appendChild(divider);
+
+            let label = document.createElement("h2");
+            label.innerText = categoryName;
+            label.style.textAlign = "center"
+
+            let container = document.createElement("div");
+            container.id = categoryName;
+            container.classList.add("category");
+
+            divider.appendChild(label);
+
+            divider.appendChild(container);
+        }
+    }
 }
-
-
-let textView = new View(manager);
-
-manager.playRound()
-
-document.getElementById("submitRound").onsubmit = function() //Runs code when button is pressed
-    {
-        let cats = document.querySelectorAll(".category");
-
-        let chars = new Map();
-        for (let i = 0; i < cats.length; i++) {
-            let img = cats[i].querySelectorAll('.item')
-
-            chars.set(cats[i].id, img[0].id);
-        }
-
-        console.log(chars)
-        console.log(cats)
-        console.log(chars.get("Fuck"));
-        console.log(chars.get("Marry"));
-        console.log(chars.get("Kill"));
-
-        document.querySelectorAll("#fuck")[0].value = chars.get("Fuck")
-        document.querySelectorAll("#marry")[0].value = chars.get("Marry")
-        document.querySelectorAll("#kill")[0].value = chars.get("Kill")
-
-        manager.selectFMK(chars.get("Fuck"), chars.get("Marry"), chars.get("Kill"));
-        textView.updateModel(manager);
-        manager.playRound();
-
-    }
-
-document.getElementById("Results").onclick = function() //Runs code when button is pressed
-    {
-        let cats = document.querySelectorAll(".category");
-
-        let chars = new Map();
-        for (let i = 0; i < cats.length; i++) {
-            let img = cats[i].querySelectorAll('.item')
-
-            chars.set(cats[i].id, img[0].id);
-        }
-        console.log(document.querySelectorAll("#fuck"))
-        document.querySelectorAll("#fuck")[0].value = chars.get("Fuck");
-        document.querySelectorAll("#marry")[0].value = chars.get("Marry");
-        document.querySelectorAll("#kill")[0].value = chars.get("Kill");
-
-        //        textView.renderList();
-    }
