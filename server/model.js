@@ -23,20 +23,36 @@ class Model {
 
     multiplier = .5;
 
+
+    parseIntoArray(result) {
+        return Object.values(JSON.parse(JSON.stringify(result)));
+    }
+
     getRandomChars(num) {
-        return this.executeSQL("SELECT * FROM characterdb ORDER BY RAND() LIMIT " + num + ";");
+        return this.parseIntoArray(
+            this.executeSQL("SELECT charName, Image FROM characterdb ORDER BY RAND() LIMIT " + num + ";")
+        );
     }
 
     getCharArray(characterName) {
-        return this.executeSQL("SELECT f_val,m_val,k_val FROM characterdb WHERE charName = '" + characterName + "';");
+        return this.parseIntoArray(
+            this.executeSQL("SELECT f_val,m_val,k_val FROM characterdb WHERE charName = '" + characterName + "';")
+        )
+
     }
 
     getImage(characterName) {
-        return this.executeSQL("SELECT Image FROM characterdb WHERE charName = '" + characterName + "';");
+        return this.parseData(
+            this.executeSQL("SELECT Image FROM characterdb WHERE charName = '" + characterName + "';")
+        );
     }
 
     getCharactersStored() {
-        return this.executeSQL("SELECT charName FROM characterdb;");
+        let nameArray = []
+        this.parseIntoArray(
+            this.executeSQL("SELECT charName FROM characterdb;")
+        ).forEach((nameObj) => nameArray.push(nameObj.charName))
+        return nameArray
     }
 
     /**
@@ -61,22 +77,13 @@ class Model {
         this.parseIncrement(selected, val, type);
     }
 
-    parseData(result, type) {
+    parseData(result) {
 
-        switch (type) {
-            case (category.f_val):
-                return result.f_val;
-            case (category.m_val):
-                return result.m_val;
-            case (category.k_val):
-                return result.k_val;
-        }
-
-        throw new RangeError("Illegal Type pased in");
+        return Object.values(result[0])[0]
     }
 
     parseReturn(char, type) {
-        return this.parseReturn(this.executeSQL("SELECT " + type + " FROM characterdb WHERE charName = '" + char + "';"), type);
+        return this.parseData(this.executeSQL("SELECT " + type + " FROM characterdb WHERE charName = '" + char + "';"));
     }
 
     parseIncrement(char, val, type) {
@@ -90,18 +97,22 @@ class Model {
     }
 
     getMaxName(type) {
-        return this.executeSQL(
-            "select charName from characterdb" +
-            " ORDER BY " + type + " DESC" +
-            "LIMIT 1;")
+        return this.parseData(
+            this.executeSQL(
+                "select charName from characterdb" +
+                " ORDER BY " + type + " DESC" +
+                "LIMIT 1;")
+        )
     }
 
     getMaxCategory(category, type) {
-        this.executeSQL(
-            "select " + category + " from characterdb" +
-            "group by " + category +
-            "ORDER BY sum( " + type + " ) DESC " +
-            "LIMIT 1;")
+        return this.parseData(
+            this.executeSQL(
+                "select " + category + " from characterdb " +
+                "group by " + category + " " +
+                "ORDER BY sum( " + type + " ) DESC " +
+                "LIMIT 1;")
+        )
     }
 
     getCategoryArray() {

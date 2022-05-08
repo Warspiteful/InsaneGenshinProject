@@ -13,15 +13,48 @@ function parseData(result, type) {
     return "HAHAHAH"
 }
 
+
+function parse(result) {
+
+    return Object.values(result[0])[0]
+}
+
+
+
+function parseIntoArray(result) {
+    return Object.values(JSON.parse(JSON.stringify(result)));
+}
+
+
+function getCharactersStored() {
+
+
+    let sql = "SELECT charName FROM characterdb;"
+    console.log(executeSQL(sql))
+
+}
+
+function executeSQL(sql) {
+
+    let re = ""
+    return new Promise(data => {
+        con.query(sql, function(err, result) {
+            if (err) throw err;
+            data(result);
+        })
+    })
+};
+
+
+
 con.connect(function(err) {
     type = "m_val"
     charName = "Keqing"
+    category = "Element"
+    num = 3
     if (err) throw err;
     console.log("Connected!");
-    var sql = "SELECT " + type + " FROM characterdb WHERE charName = '" + charName + "';";
-    con.query(sql, function(err, result) {
-        if (err) throw err;
+    var sql = "SELECT charName FROM characterdb;"
+    getCharactersStored()
 
-        console.log(parseData(result[0], type))
-    });
 });
