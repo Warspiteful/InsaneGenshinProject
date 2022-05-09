@@ -12,11 +12,6 @@ con.getConnection(function(err) {
 })
 
 
-var category = {
-    "f_val": 0,
-    "m_val": 1,
-    "k_val": 2
-}
 
 
 import { readModel } from './readModel';
@@ -73,28 +68,8 @@ export class Model extends readModel {
         this.calculateReturnPoints(K, [M, F], category.k_val);
     }
 
-    getMaxName(type) {
-        return this.parseData(
-            this.executeSQL(
-                "select charName from characterdb" +
-                " ORDER BY " + type + " DESC" +
-                "LIMIT 1;")
-        )
-    }
 
-    getMaxCategory(category, type) {
-        return this.parseData(
-            this.executeSQL(
-                "select " + category + " from characterdb " +
-                "group by " + category + " " +
-                "ORDER BY sum( " + type + " ) DESC " +
-                "LIMIT 1;")
-        )
-    }
 
-    getCategoryArray() {
-        return Object.keys(category)
-    }
 
 
 

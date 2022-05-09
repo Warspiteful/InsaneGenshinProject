@@ -2,9 +2,15 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const { Controller } = require('./controller')
 const port = 3000
 
-// We are using our packages here
+
+
+let model = new model();
+
+let control = new Controller(model)
+    // We are using our packages here
 app.use(bodyParser.json()); // to support JSON-encoded bodies
 
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
@@ -21,23 +27,7 @@ app.get('/', (req, res) => {
 //Route that handles login logic
 app.post('/submit', (req, res) => {
 
-    console.log("Connected!");
-    var sql = "UPDATE characterdb SET f_val = 1 + f_val WHERE charName = '" + req.body.fuck + "'";
-    con.query(sql, function(err, result) {
-        if (err) throw err;
-        console.log("Result: " + result);
-    });
-    var sql = "UPDATE characterdb SET m_val = 1 + m_val WHERE charName = '" + req.body.marry + "'";
-    con.query(sql, function(err, result) {
-        if (err) throw err;
-        console.log("Result: " + result);
-    });
-
-    var sql = "UPDATE characterdb SET k_val = 1 + k_val WHERE charName = '" + req.body.kill + "'";
-    con.query(sql, function(err, result) {
-        if (err) throw err;
-        console.log("Result: " + result);
-    });
+    control.sendRound(req.body.fuck, req.body.marry, req.body.kill);
 
     res.redirect('back')
 })

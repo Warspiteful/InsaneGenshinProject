@@ -1,11 +1,22 @@
 //@ts-check
 
-class Controller {
+const { View } = require('./view')
 
+export class Controller {
 
-    constructor(model, view) {
+    constructor(model) {
         this.model = model;
-        this.view = view;
+        this.view = new View(model);
+    }
+
+    sendRound(fuckName, marryName, killName) {
+
+        (async function() {
+            await this.model.selectFMK(fuckName, marryName, killName);
+            this.view.updateModel(this.model);
+        })
+
+
     }
 
 
@@ -16,10 +27,11 @@ class Controller {
         });
     }
 
-    playRound() {
-
-        this.view.setup();
-        this.view.createCategories();
+    playGame() {
+        this.model.getCategoryArray().forEach(
+            cat => {
+                this.view.createHolders(cat);
+            });
         this.view.updateCharacters();
 
         for (let i = 0; i < roundChars.length; i++) {
@@ -31,8 +43,6 @@ class Controller {
             img.classList.add("item");
             img.style = "margins: 0 auto;"
         }
-
-
 
     }
     processSubmission() {
@@ -55,9 +65,9 @@ class Controller {
         document.querySelectorAll("#marry")[0].value = chars.get("Marry")
         document.querySelectorAll("#kill")[0].value = chars.get("Kill")
 
-        manager.selectFMK(chars.get("Fuck"), chars.get("Marry"), chars.get("Kill"));
-        textView.updateModel(manager);
-        manager.playRound();
+        this.model.selectFMK(chars.get("Fuck"), chars.get("Marry"), chars.get("Kill"));
+        textView.updateModel(this.model);
+        this.model.playRound();
     }
 
     displayResults() {
@@ -74,13 +84,10 @@ class Controller {
         document.querySelectorAll("#marry")[0].value = chars.get("Marry");
         document.querySelectorAll("#kill")[0].value = chars.get("Kill");
 
-        //        textView.renderList();
     }
-
-
-
-
 }
+
+
 
 
 
@@ -95,19 +102,11 @@ document.getElementById("submitRound").onsubmit = function() //Runs code when bu
             chars.set(cats[i].id, img[0].id);
         }
 
-        console.log(chars)
-        console.log(cats)
-        console.log(chars.get("Fuck"));
-        console.log(chars.get("Marry"));
-        console.log(chars.get("Kill"));
 
-        document.querySelectorAll("#fuck")[0].value = chars.get("Fuck")
-        document.querySelectorAll("#marry")[0].value = chars.get("Marry")
-        document.querySelectorAll("#kill")[0].value = chars.get("Kill")
+        document.querySelectorAll("#fuck")[0].value = chars.get("Fuck");
+        document.querySelectorAll("#marry")[0].value = chars.get("Marry");
+        document.querySelectorAll("#kill")[0].value = chars.get("Kill");
 
-        manager.selectFMK(chars.get("Fuck"), chars.get("Marry"), chars.get("Kill"));
-        textView.updateModel(manager);
-        manager.playRound();
 
     }
 

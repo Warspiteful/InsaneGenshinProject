@@ -33,9 +33,9 @@ function getCharactersStored() {
     category = "Element"
     val = 3
 
-    let sql = "SELECT " + type + " FROM characterdb WHERE charName = '" + charName + "'";
 
-    (async function() {
+
+        (async function() {
         val = await executeSQL(sql);
 
         console.log(parse(val));

@@ -1,4 +1,10 @@
-class readModel {
+export class readModel {
+
+    category = {
+        "f_val": 0,
+        "m_val": 1,
+        "k_val": 2
+    }
 
 
     async getRandomChars(num) {
@@ -48,4 +54,29 @@ class readModel {
             return val;
         })
     };
+
+
+    getCategoryArray() {
+        return Object.keys(this.category)
+    }
+
+
+    getMaxName(type) {
+        return this.parseData(
+            this.executeSQL(
+                "select charName from characterdb" +
+                " ORDER BY " + type + " DESC" +
+                "LIMIT 1;")
+        )
+    }
+
+    getMaxCategory(category, type) {
+        return this.parseData(
+            this.executeSQL(
+                "select " + category + " from characterdb " +
+                "group by " + category + " " +
+                "ORDER BY sum( " + type + " ) DESC " +
+                "LIMIT 1;")
+        )
+    }
 }
