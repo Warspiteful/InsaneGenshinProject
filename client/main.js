@@ -354,7 +354,6 @@ let regulars = [
     new Character("Keqing", "Images/Character_Keqing_Card.webp"),
     new Character("Itto", "Images/Character_Arataki_Itto_Card.webp"),
     new Character("Eula", "Images/Character_Eula_Card.webp"),
-    new Character("Beidou", "Images/Character_Beidou_Card.webp"),
     new Character("Gorou", "Images/Character_Gorou_Card.webp"),
     new Character("Jean", "Images/Character_Jean_Card.webp"),
     new Character("Aether", "Images/Traveler_Male_Card.webp"),
