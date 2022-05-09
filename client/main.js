@@ -381,6 +381,8 @@ let regulars = [
     new Character("Zhongli", "Images/Character_Zhongli_Card.webp"),
     new Character("Albedo", "Images/Character_Albedo_Card.webp"),
     new Character("Amber", "Images/Character_Amber_Card.webp"),
+    new Character("Raiden Shogun", "Images/Character_Raiden_Shogun_Card.webp"),
+
 ]
 
 manager.addChar(regulars);
