@@ -1,7 +1,8 @@
 <template>
 <v-app>
   <v-container fluid>
-              <draggable class="row" v-model="cards">
+              <draggable  v-model="cards">
+              <TransitionGroup class="row" name = "list">
  <v-col name="list" v-for="card in cards"
             :key="card.title"
             :cols="card.flex"
@@ -21,7 +22,7 @@
                 </v-card>
 
               </v-col>
-
+</TransitionGroup>
                         </draggable>
             </v-container>
 
@@ -39,10 +40,11 @@
              Coded By Justin
       </v-col>
                   <v-col cols="4">
-   
+                     <v-btn>Submit</v-btn>
+
       </v-col>
                 <v-col cols="4">
-                  <v-btn></v-btn>
+                  <v-btn>Get Logs</v-btn>
       </v-col>
       </v-row>
        
