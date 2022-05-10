@@ -5,6 +5,18 @@ import vuetify from './plugins/vuetify'
 Vue.config.productionTip = false
 
 new Vue({
-  vuetify,
-  render: h => h(App)
+    el: '#app',
+    vuetify,
+    render: h => h(App),
+
+    methods: {
+        onClickImage() {
+            alert('Clicked image')
+        }
+    },
+    data() {
+        return {
+            dialog: false,
+        }
+    },
 }).$mount('#app')
