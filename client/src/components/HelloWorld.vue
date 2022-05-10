@@ -1,6 +1,10 @@
 <template>
 <v-app>
   <v-container fluid>
+  <v-row  align="center" justify="center" >
+          
+            <v-col cols = "4" align="center" justify="center" v-for="cat in categories" :key="cat">{{cat}}</v-col>
+                          </v-row>
               <draggable  v-model="cards">
               <TransitionGroup class="row" name = "list">
  <v-col name="list" v-for="card in cards"
@@ -67,10 +71,14 @@ import draggable from "vuedraggable";
   },
 
     data: () => ({
+      categories:
+      [
+        "Fuck", "Marry", "Kill"
+      ],
       cards: [
-      { title: 'Pre-fab homes', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp', flex: 4 },
-      { title: 'Favorite road trips', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144526/genshin-cards/Character_Tartaglia_Card_eajswq.webp', flex: 4 },
-      { title: 'Best airlines', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp', flex: 4 },
+      { title: 'Albedo', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp', flex: 4 },
+      { title: 'Jean', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp', flex: 4 },
+      { title: 'Ganyu', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp', flex: 4 },
     ],
     }),
   }
