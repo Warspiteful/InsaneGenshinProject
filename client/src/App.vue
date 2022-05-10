@@ -56,5 +56,22 @@ export default {
   data: () => ({
     //
   }),
+  methods: {
+    handleDragEnd() {
+      this.futureItem = this.cards[this.futureIndex];
+      this.movingItem = this.cards[this.movingIndex];
+      const _items = Object.assign([], this.cards);
+      _items[this.futureIndex] = this.movingItem;
+      _items[this.movingIndex] = this.futureItem;
+
+      this.cards = _items;
+    },
+    handleMove(e) {
+      const { index, futureIndex } = e.draggedContext;
+      this.movingIndex = index;
+      this.futureIndex = futureIndex;
+      return false; // disable sort
+    }
+  }
 };
 </script>

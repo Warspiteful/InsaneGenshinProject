@@ -1,22 +1,32 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-   <v-col
-            v-for="card in cards"
+<v-app>
+  <v-container fluid>
+              <draggable class="row" v-model="cards">
+ <v-col name="list" v-for="card in cards"
             :key="card.title"
             :cols="card.flex"
+             align="center" justify="center" 
           >
-            <v-card class="justify-center">
-              <v-img
+          
+            <v-card
+                      width ="55%"
+                height="auto" key = "card.title" >
+
+              <v-img 
                 :src="card.src"
                 class="white--text align-end"
-                width ="40%"
-                height="auto"
               >
                   <v-card-title v-text="card.title"></v-card-title>
                 </v-img>
-              </v-card>
-          </v-col>
+                </v-card>
+
+              </v-col>
+
+                        </draggable>
+            </v-container>
+
+<v-container>
+    <v-row class="text-center" align-center>
 
  <v-col
         class="mb-10"
@@ -29,7 +39,7 @@
              Coded By Justin
       </v-col>
                   <v-col cols="4">
-                  <v-btn></v-btn>
+   
       </v-col>
                 <v-col cols="4">
                   <v-btn></v-btn>
@@ -41,18 +51,45 @@
     </v-row>
     
   </v-container>
+  </v-app>
 </template>
 
 <script>
+import draggable from "vuedraggable";
+
   export default {
+    
     name: 'HelloWorld',
+      components: {
+    draggable,
+  },
 
     data: () => ({
       cards: [
-      { title: 'Pre-fab homes', src: 'https://static.wikia.nocookie.net/gensin-impact/images/f/f8/Character_Albedo_Card.png/', flex: 4 },
-      { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 4 },
-      { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 4 },
+      { title: 'Pre-fab homes', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp', flex: 4 },
+      { title: 'Favorite road trips', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144526/genshin-cards/Character_Tartaglia_Card_eajswq.webp', flex: 4 },
+      { title: 'Best airlines', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp', flex: 4 },
     ],
     }),
   }
 </script>
+
+<style>
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
+}
+</style>
