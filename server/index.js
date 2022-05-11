@@ -69,6 +69,7 @@ app.get('/stats', (req, res) => {
 
 
         const resp = await model.getAll();
+        console.log("STATS");
 
         res.json(resp);
     })();
