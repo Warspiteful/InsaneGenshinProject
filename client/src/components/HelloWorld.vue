@@ -198,10 +198,17 @@ export default {
         console.log("Entered Async")
 
         const res = await axios.get('http://localhost:5000/resp',)
-        console.log("Finished Processing")
-        console.log(res.data.character)
-        this.cards[0].title = res.data.character;
-        this.cards[0].src = res.data.img;
+
+
+    console.log(res.data)
+        for (var i = 0; i < res.data.length; i++){
+                        this.cards[i].title = "";
+          this.cards[i].src = "";
+              this.cards[i].title = res.data[i].charName;
+          this.cards[i].src = res.data[i].Image;
+        }
+    
+
 
       }
       )();

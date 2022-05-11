@@ -22,7 +22,7 @@ function parse(result) {
 
 
 function parseIntoArray(result) {
-    return Object.values(JSON.parse(JSON.stringify(result)));
+    return JSON.parse(JSON.stringify(result));
 }
 
 
@@ -31,14 +31,12 @@ function getCharactersStored() {
     type = "m_val"
     charName = "Keqing"
     category = "Element"
-    val = 3
+    val = 3;
 
-
-
-        (async function() {
-        val = await executeSQL(sql);
-
-        console.log(parse(val));
+    (async function() {
+        val = await executeSQL("SELECT charName,Image FROM characterdb ORDER BY rand() LIMIT 3;");
+        val = parseIntoArray(val);
+        console.log(val);
     })()
 
 }

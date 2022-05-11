@@ -2,14 +2,13 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
-    // const { Controller } = require('./controller')
-    //const { Model } = require('./model')
+const { Model } = require('./model')
 
 const port = 3000
 
 
 
-//let model = new Model();
+let model = new Model();
 
 //let control = new Controller(model)
 // We are using our packages here
@@ -33,11 +32,15 @@ app.get('/', (req, res) => {
 //Route that handles login logic
 app.post('/submit', (req, res) => {
 
-    control.sendRound(req.body.fuck, req.body.marry, req.body.kill);
+    //    control.sendRound(req.body.fuck, req.body.marry, req.body.kill);
+    console.log("HELLO!");
 
-    res.json({ "character": "Lumine" });
 
-    res.redirect('back')
+
+
+
+
+
 })
 
 
@@ -45,7 +48,16 @@ app.get('/resp', (req, res) => {
 
     console.log("HELLO!");
 
-    res.json({ "character": "Lumine", "img": "https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Beidou_Card_uucri2.webp" });
+    (async() => {
+
+        console.log("Entered Async")
+
+        const resp = await model.test();
+        console.log("Finished Processing")
+        console.log(resp);
+        res.json(resp);
+    })();
+
 
 
 

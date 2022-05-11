@@ -1,15 +1,5 @@
 //@ts-check
 
-require('dotenv').config()
-
-var mysql = require('mysql');
-
-var con = mysql.createPool(process.env.CLEARDB_DATABASE_URL);
-
-con.getConnection(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-})
 
 const { readModel } = require('./readModel')
 
@@ -30,6 +20,11 @@ class Model extends readModel {
             this.executeSQL("SELECT charName FROM characterdb;")
         ).forEach((nameObj) => nameArray.push(nameObj.charName))
         return nameArray
+    }
+
+    async test() {
+        let val = await this.executeSQL("SELECT charName,Image FROM characterdb ORDER BY rand() LIMIT 3;");
+        return this.parseIntoArray(val);
     }
 
     calculateReturnPoints(selected, others, type) {
