@@ -57,11 +57,21 @@ app.get('/resp', (req, res) => {
         console.log(resp);
         res.json(resp);
     })();
+})
 
 
 
+app.get('/stats', (req, res) => {
+
+    console.log("HELLO!");
+
+    (async() => {
 
 
+        const resp = await model.getAll();
+
+        res.json(resp);
+    })();
 })
 
 

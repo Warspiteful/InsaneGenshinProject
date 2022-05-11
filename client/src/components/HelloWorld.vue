@@ -35,7 +35,7 @@
 
             </v-col>
             <v-col cols="12" sm="4">
-              <v-dialog v-model="dialog" width="45%">
+              <v-dialog v-model="dialog" width="47%">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
                     Click Me
@@ -199,17 +199,35 @@ export default {
 
         const res = await axios.get('http://localhost:5000/resp',)
 
-
-    console.log(res.data)
-        for (var i = 0; i < res.data.length; i++){
-                        this.cards[i].title = "";
+        for (var i = 0; i < res.data.length; i++) {
+          this.cards[i].title = "";
           this.cards[i].src = "";
-              this.cards[i].title = res.data[i].charName;
+          this.cards[i].title = res.data[i].charName;
           this.cards[i].src = res.data[i].Image;
         }
-    
 
 
+
+        console.log("Stat Update")
+
+        const stat = await axios.get('http://localhost:5000/stats',)
+
+        for (i = 0; i < stat.data.length; i++) {
+          this.chars[i] = {}  
+          this.chars[i].name = stat.data[i].charName;
+          this.chars[i].src = stat.data[i].Image;
+          this.chars[i].desc = stat.data[i].title;
+          this.chars[i].attributes = {};
+          this.chars[i].attributes.element = { title: "Element", val: stat.data[i].Element }
+          this.chars[i].attributes.weapon = { title: "Weapon", val: stat.data[i].Region }
+          this.chars[i].attributes.region = { title: "Region", val: stat.data[i].Weapon }
+            this.chars[i].stats = {}
+          this.chars[i].stats.f_val = { title: "Fuck", num: stat.data[i].f_val }
+          this.chars[i].stats.m_val = { title: "Marry", num: stat.data[i].m_val }
+          this.chars[i].stats.k_val = { title: "Kill", num: stat.data[i].k_val }
+
+
+        }
       }
       )();
 
@@ -232,14 +250,7 @@ export default {
       { title: 'Keqing', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp', flex: 4 },
       { title: 'Ganyu', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp', flex: 4 },
     ],
-    chars: [
-      { name: 'Arataki Itto', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp', desc: "Chief Alchemist of the Knights of Favonius", attributes: [{ title: "Element", val: "Geo" }, { title: "Weapon", val: "Sword" }, { title: "Region", val: "Mondstadt" }], stats: [{ title: "Fuck", num: "4" }, { title: "Marry", num: "2" }, { title: "Kill", num: "3" }] },
-      { name: 'Raiden Shogun', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144525/genshin-cards/Character_Raiden_Shogun_Card_zx1vyj.webp', desc: "Chief Alchemist of the Knights of Favonius", attributes: [{ title: "Element", val: "Electro" }, { title: "Weapon", val: "Polearm" }, { title: "Region", val: "Inazuma" }], stats: [{ title: "Fuck", num: "4" }, { title: "Marry", num: "2" }, { title: "Kill", num: "3" }] },
-      { name: 'Keqing', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Keqing_Card_qij7o8.webp', desc: "Chief Alchemist of the Knights of Favonius", attributes: [{ title: "Element", val: "Electro" }, { title: "Weapon", val: "Polearm" }, { title: "Region", val: "Inazuma" }], stats: [{ title: "Fuck", num: "4" }, { title: "Marry", num: "2" }, { title: "Kill", num: "3" }] },
-
-      { name: 'Kaedahara Kazuha', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp', flex: 4 },
-      { name: 'Ganyu', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp', flex: 4 },
-    ]
+    chars: [{}]
   }),
 }
 </script>

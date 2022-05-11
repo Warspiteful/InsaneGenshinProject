@@ -32,6 +32,11 @@ class readModel {
 
     }
 
+
+    async getAll() {
+        let val = await this.executeSQL("SELECT * FROM characterdb ORDER BY charName ASC;");
+        return this.parseIntoArray(val);
+    }
     async getImage(characterName) {
         return this.parseData(
             this.executeSQL("SELECT Image FROM characterdb WHERE charName = '" + characterName + "';")
