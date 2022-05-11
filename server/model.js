@@ -11,13 +11,10 @@ con.getConnection(function(err) {
     console.log("Connected!");
 })
 
+const { readModel } = require('./readModel')
 
 
-
-import { readModel } from './readModel';
-
-
-export class Model extends readModel {
+class Model extends readModel {
 
     multiplier = .5;
 
@@ -63,14 +60,10 @@ export class Model extends readModel {
     }
 
     selectFMK(F, M, K) {
-        this.calculateReturnPoints(F, [M, K], category.f_val);
-        this.calculateReturnPoints(M, [F, K], category.m_val);
-        this.calculateReturnPoints(K, [M, F], category.k_val);
+        this.calculateReturnPoints(F, [M, K], this.category.f_val);
+        this.calculateReturnPoints(M, [F, K], this.category.m_val);
+        this.calculateReturnPoints(K, [M, F], this.category.k_val);
     }
-
-
-
-
-
-
 }
+
+exports.Model = Model;

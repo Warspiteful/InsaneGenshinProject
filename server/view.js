@@ -1,7 +1,8 @@
 //@ts-check
 
 
-export class View {
+/*
+class View {
 
     titles = new Map();
 
@@ -110,3 +111,7 @@ export class View {
         }
     }
 }
+
+exports.View = View;
+
+*/

@@ -168,7 +168,6 @@ import draggable from "vuedraggable";
 import axios from "axios";
 
 
-
 export default {
 
   name: 'HelloWorld',
@@ -177,18 +176,35 @@ export default {
   },
 
   methods: {
+
+    setTitle(name, index) {
+      this.cards[index].title = name;
+
+    },
     printNames() {
 
       console.log("CHECKED");
 
-      axios.post('http://localhost:5000/submit', {
+      /*      axios.post('http://localhost:5000/submit', {
+      
+              fuck: this.cards[0].title,
+              marry: this.cards[1].title,
+              kill: this.cards[2].title
+            });
+      
+      */
+      (async () => {
 
-          fuck: this.cards[0].title,
-          marry: this.cards[1].title,
-          kill: this.cards[2].title
-        
-      });
-     
+        console.log("Entered Async")
+
+        const res = await axios.get('http://localhost:5000/resp',)
+        console.log("Finished Processing")
+        console.log(res.data.character)
+        this.cards[0].title = res.data.character;
+        this.cards[0].src = res.data.img;
+
+      }
+      )();
 
     }
   },
