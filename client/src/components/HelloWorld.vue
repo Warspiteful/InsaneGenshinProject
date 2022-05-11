@@ -28,15 +28,15 @@
         </v-col>
         <v-col cols="12">
           <v-row>
-            <v-col cols="4">
+            <v-col cols="12" order-sm="first" order="last" sm="4">
               Coded By Justin
             </v-col>
-            <v-col cols="4">
+            <v-col cols="12" sm="4" order-sm="first" >
               <v-btn>Submit</v-btn>
 
             </v-col>
-            <v-col cols="4">
-              <v-dialog v-model="dialog" width="500">
+            <v-col cols="12" sm="4">
+              <v-dialog v-model="dialog" width="50%">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
                     Click Me
@@ -50,7 +50,7 @@
                   <v-tabs v-model="navBar" background-color="deep-purple accent-4" centered dark icons-and-text>
                     <v-tabs-slider></v-tabs-slider>
 
-                    <v-tab v-for="(cat, index) in navBarCat" :key="index" >
+                    <v-tab v-for="(cat, index) in navBarCat" :key="index">
                       {{ cat }}
                     </v-tab>
 
@@ -59,32 +59,92 @@
                   <v-tabs-items v-model="navBar">
                     <v-tab-item key="0">
                       <v-tabs vertical fixed-tabs>
-                        <v-tab v-for="(card, index) in cards" :key="index">
-                          {{ card.title }}
+                        <v-tab v-for="(char, index) in chars" :key="index">
+                          {{ char.name }}
+                        </v-tab>
+
+
+                        <v-tab-item v-for="char in chars" :key="char.name">
+
+                          <v-card flat>
+                            <v-list-item>
+                              <v-list-item-content color="grey">
+                                <v-img :src="char.src" class="white--text align-end"></v-img>
+                              </v-list-item-content>
+                              <v-list-item-content>
+
+                                <v-card-text class="text-center">
+                                  <v-row>
+                                    <v-col cols="12">
+                                      <h1>{{ char.name }}</h1>
+                                    </v-col>
+                                    <v-col cols="12">
+                                      <hr>
+                                    </v-col>
+                                    <v-col cols="12">
+                                      <h3>{{ char.desc }}</h3>
+                                    </v-col>
+                                    <v-col cols="12">
+                                      <hr>
+                                    </v-col>
+                                    <v-col cols="4" v-for="stat in char.stats" :key="stat.key">
+                                      <h2>{{ stat.title }}</h2>{{ stat.num }}
+                                    </v-col>
+                                    <v-col cols="12">
+                                      <hr>
+                                    </v-col>
+
+                                    <v-col cols="4" v-for="attr in char.attributes" :key="attr.key">
+                                      <h2>{{ attr.title }}</h2>{{ attr.val }}
+                                    </v-col>
+
+                                  </v-row>
+                                </v-card-text>
+                              </v-list-item-content>
+
+                            </v-list-item>
+
+                          </v-card>
+
+                        </v-tab-item>
+
+                      </v-tabs>
+                    </v-tab-item>
+
+
+                    <v-tab-item key="1">
+                      <v-tabs vertical fixed-tabs>
+                        <v-tab>
+                          Insert Analysis Here
                         </v-tab>
 
 
                         <v-tab-item>
                           <v-card flat>
                             <v-card-text>
-                              aa
+                              Insert DATA HERE
                             </v-card-text>
                           </v-card>
                         </v-tab-item>
+
+                      </v-tabs>
+                    </v-tab-item>
+
+                    <v-tab-item key="2">
+                      <v-tabs vertical fixed-tabs>
+                        <v-tab>
+                          Setting 1
+                        </v-tab>
+
+
                         <v-tab-item>
                           <v-card flat>
                             <v-card-text>
-                              bb
+                              SETTING 1 CONFIG HERE
                             </v-card-text>
                           </v-card>
                         </v-tab-item>
-                        <v-tab-item>
-                          <v-card flat>
-                            <v-card-text>
-                              cc
-                            </v-card-text>
-                          </v-card>
-                        </v-tab-item>
+
                       </v-tabs>
                     </v-tab-item>
 
@@ -126,10 +186,18 @@ export default {
         "Fuck", "Marry", "Kill"
       ],
     cards: [
-      { title: 'Albedo', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp', flex: 4 },
-      { title: 'Jean', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp', flex: 4 },
+      { title: 'Arataki Itto', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp', flex: 4 },
+      { title: 'Kaedahara Kazuha', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp', flex: 4 },
       { title: 'Ganyu', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp', flex: 4 },
     ],
+    chars: [
+      { name: 'Arataki Itto', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp', desc: "Chief Alchemist of the Knights of Favonius", attributes: [{ title: "Element", val: "Geo" }, { title: "Weapon", val: "Sword" }, { title: "Region", val: "Mondstadt" }], stats: [{ title: "Fuck", num: "4" }, { title: "Marry", num: "2" }, { title: "Kill", num: "3" }] },
+      { name: 'Raiden Shogun', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144525/genshin-cards/Character_Raiden_Shogun_Card_zx1vyj.webp', desc: "Chief Alchemist of the Knights of Favonius", attributes: [{ title: "Element", val: "Electro" }, { title: "Weapon", val: "Polearm" }, { title: "Region", val: "Inazuma" }], stats: [{ title: "Fuck", num: "4" }, { title: "Marry", num: "2" }, { title: "Kill", num: "3" }] },
+      { name: 'Keqing', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Keqing_Card_qij7o8.webp', desc: "Chief Alchemist of the Knights of Favonius", attributes: [{ title: "Element", val: "Electro" }, { title: "Weapon", val: "Polearm" }, { title: "Region", val: "Inazuma" }], stats: [{ title: "Fuck", num: "4" }, { title: "Marry", num: "2" }, { title: "Kill", num: "3" }] },
+
+      { name: 'Kaedahara Kazuha', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp', flex: 4 },
+      { name: 'Ganyu', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp', flex: 4 },
+    ]
   }),
 }
 </script>
