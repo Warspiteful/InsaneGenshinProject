@@ -50,42 +50,44 @@
                   <v-tabs v-model="navBar" background-color="deep-purple accent-4" centered dark icons-and-text>
                     <v-tabs-slider></v-tabs-slider>
 
-                    <v-tab v-for="(cat,index) in navBarCat" :key="index" v-bind:href="'#'+ index">
+                    <v-tab v-for="(cat, index) in navBarCat" :key="index" >
                       {{ cat }}
                     </v-tab>
-
 
                   </v-tabs>
 
                   <v-tabs-items v-model="navBar">
-                    <v-tabs vertical fixed-tabs key=#1>
-                      <v-tab v-for="(card,index) in cards" :key="index">
-                        {{ card.title }}
-                      </v-tab>
+                    <v-tab-item key="0">
+                      <v-tabs vertical fixed-tabs>
+                        <v-tab v-for="(card, index) in cards" :key="index">
+                          {{ card.title }}
+                        </v-tab>
 
 
-                      <v-tab-item>
-                        <v-card flat>
-                          <v-card-text>
-                            aa
-                          </v-card-text>
-                        </v-card>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <v-card flat>
-                          <v-card-text>
-                            bb
-                          </v-card-text>
-                        </v-card>
-                      </v-tab-item>
-                      <v-tab-item>
-                        <v-card flat>
-                          <v-card-text>
-                            cc
-                          </v-card-text>
-                        </v-card>
-                      </v-tab-item>
-                    </v-tabs>
+                        <v-tab-item>
+                          <v-card flat>
+                            <v-card-text>
+                              aa
+                            </v-card-text>
+                          </v-card>
+                        </v-tab-item>
+                        <v-tab-item>
+                          <v-card flat>
+                            <v-card-text>
+                              bb
+                            </v-card-text>
+                          </v-card>
+                        </v-tab-item>
+                        <v-tab-item>
+                          <v-card flat>
+                            <v-card-text>
+                              cc
+                            </v-card-text>
+                          </v-card>
+                        </v-tab-item>
+                      </v-tabs>
+                    </v-tab-item>
+
                   </v-tabs-items>
 
 
