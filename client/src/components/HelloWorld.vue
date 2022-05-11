@@ -24,19 +24,18 @@
     <v-container>
       <v-row class="text-center" align-center>
 
-        <v-col class="mb-10" cols="12">
-        </v-col>
+
         <v-col cols="12">
           <v-row>
             <v-col cols="12" order-sm="first" order="last" sm="4">
               Coded By Justin
             </v-col>
-            <v-col cols="12" sm="4" order-sm="first" >
+            <v-col cols="12" sm="4" order-sm="first" @click="printNames">
               <v-btn>Submit</v-btn>
 
             </v-col>
             <v-col cols="12" sm="4">
-              <v-dialog v-model="dialog" width="50%">
+              <v-dialog v-model="dialog" width="45%">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
                     Click Me
@@ -166,12 +165,32 @@
 
 <script>
 import draggable from "vuedraggable";
+import axios from "axios";
+
+
 
 export default {
 
   name: 'HelloWorld',
   components: {
     draggable,
+  },
+
+  methods: {
+    printNames() {
+
+      console.log("CHECKED");
+
+      axios.post('http://localhost:5000/submit', {
+
+          fuck: this.cards[0].title,
+          marry: this.cards[1].title,
+          kill: this.cards[2].title
+        
+      });
+     
+
+    }
   },
 
   data: () => ({
@@ -186,8 +205,8 @@ export default {
         "Fuck", "Marry", "Kill"
       ],
     cards: [
-      { title: 'Arataki Itto', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp', flex: 4 },
-      { title: 'Kaedahara Kazuha', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp', flex: 4 },
+      { title: 'Childe', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp', flex: 4 },
+      { title: 'Keqing', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp', flex: 4 },
       { title: 'Ganyu', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp', flex: 4 },
     ],
     chars: [
