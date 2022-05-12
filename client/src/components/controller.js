@@ -47,9 +47,10 @@ export default {
                     this.chars[i].attributes.weapon = { title: "Region", val: stat.data[i].Region }
                     this.chars[i].attributes.region = { title: "Weapon", val: stat.data[i].Weapon }
                     this.chars[i].stats = {}
-                    this.chars[i].stats.f_val = { title: "Fuck", num: stat.data[i].f_val }
-                    this.chars[i].stats.m_val = { title: "Marry", num: stat.data[i].m_val }
-                    this.chars[i].stats.k_val = { title: "Kill", num: stat.data[i].k_val }
+
+                    this.chars[i].stats.f_val = { title: "Fuck", num: Math.round((stat.data[i].f_val / stat.data[i].total) * 100) }
+                    this.chars[i].stats.m_val = { title: "Marry", num: Math.round((stat.data[i].m_val / stat.data[i].total) * 100) }
+                    this.chars[i].stats.k_val = { title: "Kill", num: Math.round((stat.data[i].k_val / stat.data[i].total) * 100) }
                 }
             })();
 

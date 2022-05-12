@@ -33,7 +33,7 @@ class readModel {
 
 
     async getAll() {
-        let val = await this.executeSQL("SELECT * FROM characterdb ORDER BY charName ASC;");
+        let val = await this.executeSQL("SELECT *, f_val + m_val + k_val total FROM characterdb ORDER BY charName ASC;");
         return this.parseIntoArray(val);
     }
     async getImage(characterName) {

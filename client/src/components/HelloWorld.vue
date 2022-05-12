@@ -89,7 +89,7 @@
                                       <hr>
                                     </v-col>
                                     <v-col cols="4" v-for="stat in char.stats" :key="stat.key">
-                                      <h2>{{ stat.title }}</h2>{{ stat.num }}
+                                      <h2>{{ stat.title }}</h2>{{ stat.num }}%
                                     </v-col>
                                     <v-col cols="12">
                                       <hr>
@@ -195,7 +195,7 @@
     </v-container>
   </v-app>
 </template>
- <script src="./functions.js" ></script>
+ <script src="./controller.js" ></script>
 
 
 <style>
