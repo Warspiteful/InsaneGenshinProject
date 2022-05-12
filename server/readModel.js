@@ -18,6 +18,13 @@ class readModel {
         "k": "k_val"
     }
 
+    async log(F, M, K) {
+        (async() => {
+            await this.executeSQL("INSERT INTO `heroku_b3548b4ef16b308`.`choicelog` (`f`, `m`, `k`) VALUES ('" + F + "', '" + M + "', '" + K + "')");
+        })();
+    }
+
+
 
     async getRandomChars() {
         let val = await this.executeSQL("SELECT charName,Image FROM characterdb ORDER BY rand() LIMIT 3;");

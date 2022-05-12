@@ -44,8 +44,11 @@ class Model extends readModel {
 
     }
 
-    selectFMK(F, M, K) {
 
+    selectFMK(F, M, K) {
+        (async() => {
+            this.log(F, M, K);
+        })();
         this.calculateReturnPoints(F, [M, K], this.category.f);
         this.calculateReturnPoints(M, [F, K], this.category.m);
         this.calculateReturnPoints(K, [M, F], this.category.k);

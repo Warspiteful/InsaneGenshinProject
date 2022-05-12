@@ -78,25 +78,23 @@
                                   <v-row>
                                     <v-col cols="12">
                                       <h1>{{ char.name }}</h1>
-                                    </v-col>
-                                    <v-col cols="12">
+                                      <h4>{{ char.desc }}</h4>
                                       <hr>
+
                                     </v-col>
-                                    <v-col cols="12">
-                                      <h2>{{ char.desc }}</h2>
-                                    </v-col>
-                                    <v-col cols="12">
-                                      <hr>
-                                    </v-col>
+
                                     <v-col cols="4" v-for="stat in char.stats" :key="stat.key">
-                                      <h2>{{ stat.title }}</h2>{{ stat.num }}%
-                                    </v-col>
-                                    <v-col cols="12">
+                                      <h2>{{ stat.title }}</h2>
+                                      <h3>{{ stat.num }}%</h3>
                                       <hr>
+
                                     </v-col>
 
                                     <v-col cols="4" v-for="attr in char.attributes" :key="attr.key">
-                                      <h2>{{ attr.title }}</h2>{{ attr.val }}
+                                      <h2>{{ attr.title }}</h2>
+                                      <h4>{{attr.val}}</h4>
+                                      <hr>
+
                                     </v-col>
 
                                   </v-row>
@@ -148,7 +146,7 @@
                           </v-card>
                         </v-tab-item>
 
-                                  <v-tab>
+                        <v-tab>
                           Top/Bottom Region
                         </v-tab>
                         <v-tab-item>
