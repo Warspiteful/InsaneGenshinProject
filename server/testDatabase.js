@@ -62,14 +62,16 @@ async function executeSQL(sql) {
 
 
 con.connect(function(err) {
-    type = "m_val"
-    charName = "Keqing"
+    type = "k_val"
+    charName = "Kujou Sara"
     category = "Element"
-    num = 3
-    if (err) throw err;
-    console.log("Connected!");
+    val = 1
+    sql = "UPDATE characterdb SET k_val = 1 + k_val WHERE charName = 'Kujou Sara'";
 
-    getCharactersStored();
+    (async() => {
+        await executeSQL(sql);
+    })();
+    //    getCharactersStored();
 
 
 

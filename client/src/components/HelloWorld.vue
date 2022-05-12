@@ -3,7 +3,9 @@
     <v-container fluid>
       <v-row align="center" justify="center">
 
-        <v-col cols="4" align="center" justify="center" v-for="cat in categories" :key="cat">{{ cat }}</v-col>
+        <v-col cols="4" align="center" justify="center" v-for="cat in categories" :key="cat">
+          <h1>{{ cat }}</h1>
+        </v-col>
       </v-row>
       <draggable v-model="cards">
         <TransitionGroup class="row" name="list">
@@ -30,15 +32,15 @@
             <v-col cols="12" order-sm="first" order="last" sm="4">
               Coded By Justin
             </v-col>
-            <v-col cols="12" sm="4" order-sm="first" @click="updateChar">
+            <v-col cols="12" sm="4" order-sm="first" @click="submitRound">
               <v-btn>Submit</v-btn>
 
             </v-col>
             <v-col cols="12" sm="4">
               <v-dialog v-model="dialog" width="47%" height="auto">
                 <template v-slot:activator="{ on, attrs }">
-                  <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
-                    Click Me
+                  <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on" @click="updateStats">
+                    Statistics
                   </v-btn>
                 </template>
 
@@ -60,7 +62,7 @@
                       <v-tabs vertical height="800px" center-active>
                         <v-tabs-slider color="teal lighten-3"></v-tabs-slider>
 
-                        <v-tab v-for="(char, index) in chars" :key="index">
+                        <v-tab left v-for="(char, index) in chars" :key="index">
                           {{ char.name }}
                         </v-tab>
 
@@ -72,7 +74,6 @@
                                 <v-img :eager="true" :src="char.src" class="white--text align-end"></v-img>
                               </v-list-item-content>
                               <v-list-item-content>
-
                                 <v-card-text class="text-center">
                                   <v-row>
                                     <v-col cols="12">
@@ -115,10 +116,8 @@
                     <v-tab-item key="1">
                       <v-tabs vertical fixed-tabs>
                         <v-tab>
-                          Insert Analysis Here
+                          Top/Bottom Characters
                         </v-tab>
-
-
                         <v-tab-item>
                           <v-card flat>
                             <v-card-text>
@@ -127,7 +126,40 @@
                           </v-card>
                         </v-tab-item>
 
+                        <v-tab>
+                          Top/Bottom Element
+                        </v-tab>
+                        <v-tab-item>
+                          <v-card flat>
+                            <v-card-text>
+                              Insert DATA HERE
+                            </v-card-text>
+                          </v-card>
+                        </v-tab-item>
+
+                        <v-tab>
+                          Top/Bottom Weapon
+                        </v-tab>
+                        <v-tab-item>
+                          <v-card flat>
+                            <v-card-text>
+                              Insert DATA HERE
+                            </v-card-text>
+                          </v-card>
+                        </v-tab-item>
+
+                                  <v-tab>
+                          Top/Bottom Region
+                        </v-tab>
+                        <v-tab-item>
+                          <v-card flat>
+                            <v-card-text>
+                              Insert DATA HERE
+                            </v-card-text>
+                          </v-card>
+                        </v-tab-item>
                       </v-tabs>
+
                     </v-tab-item>
 
                     <v-tab-item key="2">

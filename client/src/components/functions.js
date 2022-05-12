@@ -12,6 +12,21 @@ export default {
 
     methods: {
 
+        submitRound() {
+
+
+            (async() => {
+                await axios.post('http://localhost:5000/submit', {
+                    "fuck": this.cards[0].title,
+                    "marry": this.cards[1].title,
+                    "kill": this.cards[2].title
+                })
+            })();
+            this.updateChar();
+
+
+        },
+
         setTitle(name, index) {
             this.cards[index].title = name;
 
@@ -29,8 +44,8 @@ export default {
                     this.chars[i].desc = stat.data[i].title;
                     this.chars[i].attributes = {};
                     this.chars[i].attributes.element = { title: "Element", val: stat.data[i].Element }
-                    this.chars[i].attributes.weapon = { title: "Weapon", val: stat.data[i].Region }
-                    this.chars[i].attributes.region = { title: "Region", val: stat.data[i].Weapon }
+                    this.chars[i].attributes.weapon = { title: "Region", val: stat.data[i].Region }
+                    this.chars[i].attributes.region = { title: "Weapon", val: stat.data[i].Weapon }
                     this.chars[i].stats = {}
                     this.chars[i].stats.f_val = { title: "Fuck", num: stat.data[i].f_val }
                     this.chars[i].stats.m_val = { title: "Marry", num: stat.data[i].m_val }
@@ -66,9 +81,11 @@ export default {
     mounted() {
         this.updateStats();
         this.updateChar();
+        console.log("HEY");
     },
 
     data: () => ({
+        charBar: null,
         navBar: null,
         dialog: false,
         navBarCat: [

@@ -22,39 +22,25 @@ app.use(cors())
 //You can use this to check if your server is working
 app.get('/', (req, res) => {
 
-    console.log("HELLO!");
 
-    res.json({ "character": "Lumine" });
 
+    resp.send("Hello");
 })
 
 
 //Route that handles login logic
 app.post('/submit', (req, res) => {
 
-    //    control.sendRound(req.body.fuck, req.body.marry, req.body.kill);
-    console.log("HELLO!");
-
-
-
-
-
-
-
+    model.selectFMK(req.body.fuck, req.body.marry, req.body.kill)
 })
 
 
 app.get('/resp', (req, res) => {
 
-    console.log("HELLO!");
 
     (async() => {
 
-        console.log("Entered Async")
-
         const resp = await model.getRandomChars();
-        console.log("Finished Processing")
-        console.log(resp);
         res.json(resp);
     })();
 })
@@ -63,13 +49,11 @@ app.get('/resp', (req, res) => {
 
 app.get('/stats', (req, res) => {
 
-    console.log("HELLO!");
 
     (async() => {
 
 
         const resp = await model.getAll();
-        console.log("STATS");
 
         res.json(resp);
     })();

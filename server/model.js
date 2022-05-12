@@ -6,7 +6,6 @@ const { readModel } = require('./readModel')
 
 class Model extends readModel {
 
-    multiplier = .5;
 
 
     parseIntoArray(result) {
@@ -24,36 +23,33 @@ class Model extends readModel {
 
 
     calculateReturnPoints(selected, others, type) {
-        let val = 0;
+        let val = 1;
 
-        (async function() {
+        (async() => {
 
-            for (var i = 0; i < others.length; i++) {
-                val += this.multiplier * (await this.parseReturn(others[i], type) - await this.parseReturn(selected, type));
-                if (val < 1) {
-                    val = 1;
-                }
-            }
-            this.parseIncrement(selected, val, type);
-        })
+            await this.parseIncrement(selected, val, type);
+        })();
 
     }
 
     parseData(result) {
-
         return Object.values(result[0])[0]
     }
 
 
 
-    parseIncrement(char, val, type) {
-        this.executeSQL("UPDATE characterdb SET " + type + " =  " + type + " + " + val + " WHERE charName = '" + char.name + "'");
+    async parseIncrement(char, val, type) {
+        console.log(char);
+        this.executeSQL("UPDATE characterdb SET " + type + " =  " + type + " + " + val + " WHERE charName = '" + char + "'");
+
     }
 
     selectFMK(F, M, K) {
-        this.calculateReturnPoints(F, [M, K], this.category.f_val);
-        this.calculateReturnPoints(M, [F, K], this.category.m_val);
-        this.calculateReturnPoints(K, [M, F], this.category.k_val);
+
+        this.calculateReturnPoints(F, [M, K], this.category.f);
+        this.calculateReturnPoints(M, [F, K], this.category.m);
+        this.calculateReturnPoints(K, [M, F], this.category.k);
+
     }
 }
 

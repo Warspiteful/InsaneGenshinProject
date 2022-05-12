@@ -1,5 +1,6 @@
 //@ts-check
 
+const { View } = require('./view')
 
 
 class Controller {

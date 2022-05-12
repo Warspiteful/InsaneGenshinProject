@@ -13,9 +13,9 @@ con.getConnection(function(err) {
 class readModel {
 
     category = {
-        "f_val": 0,
-        "m_val": 1,
-        "k_val": 2
+        "f": "f_val",
+        "m": "m_val",
+        "k": "k_val"
     }
 
 
@@ -54,14 +54,19 @@ class readModel {
     }
 
     async parseReturn(char, type) {
-        return this.parseData(this.executeSQL("SELECT " + type + " FROM characterdb WHERE charName = '" + char + "';"));
+        let val = await this.executeSQL("SELECT " + type + " FROM characterdb WHERE charName = '" + char + "';");
+        return this.parseData(val);
     }
 
     async executeSQL(sql) {
         console.log(sql);
         const pro = new Promise(resolve => {
             con.query(sql, function(err, result) {
-                if (err) throw err;
+                if (err) {
+                    console.log("ERROR");
+                    throw err;
+                }
+                console.log("SUCCESS");
                 resolve(result);
             })
         });
