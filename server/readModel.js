@@ -19,10 +19,9 @@ class readModel {
     }
 
 
-    async getRandomChars(num) {
-        return this.parseIntoArray(
-            this.executeSQL("SELECT charName, Image FROM characterdb ORDER BY RAND() LIMIT " + num + ";")
-        );
+    async getRandomChars() {
+        let val = await this.executeSQL("SELECT charName,Image FROM characterdb ORDER BY rand() LIMIT 3;");
+        return this.parseIntoArray(val);
     }
 
     async getCharArray(characterName) {

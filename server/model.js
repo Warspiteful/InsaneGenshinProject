@@ -22,10 +22,6 @@ class Model extends readModel {
         return nameArray
     }
 
-    async test() {
-        let val = await this.executeSQL("SELECT charName,Image FROM characterdb ORDER BY rand() LIMIT 3;");
-        return this.parseIntoArray(val);
-    }
 
     calculateReturnPoints(selected, others, type) {
         let val = 0;

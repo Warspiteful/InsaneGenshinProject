@@ -7,7 +7,7 @@
       </v-row>
       <draggable v-model="cards">
         <TransitionGroup class="row" name="list">
-          <v-col name="list" v-for="card in cards" :key="card.title" :cols="card.flex" align="center" justify="center">
+          <v-col name="list" v-for="card in cards" :key="card.title" :cols="4" align="center" justify="center">
 
             <v-card width="55%" height="auto" key="card.title">
 
@@ -30,19 +30,19 @@
             <v-col cols="12" order-sm="first" order="last" sm="4">
               Coded By Justin
             </v-col>
-            <v-col cols="12" sm="4" order-sm="first" @click="printNames">
+            <v-col cols="12" sm="4" order-sm="first" @click="updateChar">
               <v-btn>Submit</v-btn>
 
             </v-col>
             <v-col cols="12" sm="4">
-              <v-dialog v-model="dialog" width="47%">
+              <v-dialog v-model="dialog" width="47%" height="auto">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
                     Click Me
                   </v-btn>
                 </template>
 
-                <v-card>
+                <v-card width="auto">
                   <v-toolbar flat color="primary" dark>
                     <v-toolbar-title>User Profile</v-toolbar-title>
                   </v-toolbar>
@@ -57,18 +57,19 @@
 
                   <v-tabs-items v-model="navBar">
                     <v-tab-item key="0">
-                      <v-tabs vertical fixed-tabs>
+                      <v-tabs vertical height="800px" center-active>
+                        <v-tabs-slider color="teal lighten-3"></v-tabs-slider>
+
                         <v-tab v-for="(char, index) in chars" :key="index">
                           {{ char.name }}
                         </v-tab>
 
-
-                        <v-tab-item v-for="char in chars" :key="char.name">
+                        <v-tab-item v-for="char in chars" :key="char.name" eager>
 
                           <v-card flat>
                             <v-list-item>
                               <v-list-item-content color="grey">
-                                <v-img :src="char.src" class="white--text align-end"></v-img>
+                                <v-img :eager="true" :src="char.src" class="white--text align-end"></v-img>
                               </v-list-item-content>
                               <v-list-item-content>
 
@@ -81,7 +82,7 @@
                                       <hr>
                                     </v-col>
                                     <v-col cols="12">
-                                      <h3>{{ char.desc }}</h3>
+                                      <h2>{{ char.desc }}</h2>
                                     </v-col>
                                     <v-col cols="12">
                                       <hr>
@@ -162,109 +163,8 @@
     </v-container>
   </v-app>
 </template>
+ <script src="./functions.js" ></script>
 
-<script>
-import draggable from "vuedraggable";
-import axios from "axios";
-
-
-export default {
-
-  name: 'HelloWorld',
-
-  components: {
-    draggable,
-  },
-
-  methods: {
-
-    setTitle(name, index) {
-      this.cards[index].title = name;
-
-    },
-
-    updateStats() {
-      (async () => {
-
-        const stat = await axios.get('http://localhost:5000/stats',)
-
-        for (let i = 0; i < stat.data.length; i++) {
-          this.chars[i] = {}
-          this.chars[i].name = stat.data[i].charName;
-          this.chars[i].src = stat.data[i].Image;
-          this.chars[i].desc = stat.data[i].title;
-          this.chars[i].attributes = {};
-          this.chars[i].attributes.element = { title: "Element", val: stat.data[i].Element }
-          this.chars[i].attributes.weapon = { title: "Weapon", val: stat.data[i].Region }
-          this.chars[i].attributes.region = { title: "Region", val: stat.data[i].Weapon }
-          this.chars[i].stats = {}
-          this.chars[i].stats.f_val = { title: "Fuck", num: stat.data[i].f_val }
-          this.chars[i].stats.m_val = { title: "Marry", num: stat.data[i].m_val }
-          this.chars[i].stats.k_val = { title: "Kill", num: stat.data[i].k_val }
-        }
-      })();
-
-    }
-    ,
-    printNames() {
-
-      console.log("CHECKED");
-
-      /*      axios.post('http://localhost:5000/submit', {
-      
-              fuck: this.cards[0].title,
-              marry: this.cards[1].title,
-              kill: this.cards[2].title
-            });
-      
-      */
-      (async () => {
-
-        console.log("Entered Async")
-
-        const res = await axios.get('http://localhost:5000/resp',)
-
-        for (var i = 0; i < res.data.length; i++) {
-          this.cards[i].title = "";
-          this.cards[i].src = "";
-          this.cards[i].title = res.data[i].charName;
-          this.cards[i].src = res.data[i].Image;
-        }
-
-
-
-    this.updateStats();
-
-      }
-      )();
-
-    },
-  },
-    mounted()
-  {
-    this.updateStats()
-  },
-
-    data: () => ({
-      navBar: null,
-      dialog: false,
-      navBarCat:
-        [
-          "Characters", "Analysis", "Settings"
-        ],
-      categories:
-        [
-          "Fuck", "Marry", "Kill"
-        ],
-      cards: [
-        { title: 'Childe', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp', flex: 4 },
-        { title: 'Keqing', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp', flex: 4 },
-        { title: 'Ganyu', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp', flex: 4 },
-      ],
-      chars: [{}]
-    }),
-  }
-</script>
 
 <style>
 .list-move,
@@ -274,11 +174,7 @@ export default {
   transition: all 0.5s ease;
 }
 
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
+
 
 /* ensure leaving items are taken out of layout flow so that moving
    animations can be calculated correctly. */

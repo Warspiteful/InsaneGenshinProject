@@ -33,11 +33,15 @@ function getCharactersStored() {
     category = "Element"
     val = 3;
 
+
+
     (async function() {
-        val = await executeSQL("SELECT charName,Image FROM characterdb ORDER BY rand() LIMIT 3;");
-        val = parseIntoArray(val);
+        val = await executeSQL("select charName from characterdb" +
+            " ORDER BY " + "k_val" + " DESC " +
+            "LIMIT 1;");
+        val = parse(val);
         console.log(val);
-    })()
+    })();
 
 }
 

@@ -52,7 +52,7 @@ app.get('/resp', (req, res) => {
 
         console.log("Entered Async")
 
-        const resp = await model.test();
+        const resp = await model.getRandomChars();
         console.log("Finished Processing")
         console.log(resp);
         res.json(resp);
