@@ -97,7 +97,7 @@ export default {
         },
         updateChar() {
 
-            console.log(env);
+            console.log(process.env.DATABASE);
 
             (async() => {
 
