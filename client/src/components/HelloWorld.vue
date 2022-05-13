@@ -65,7 +65,7 @@
                       <v-tabs vertical height="800px" center-active>
                         <v-tabs-slider color="teal lighten-3"></v-tabs-slider>
 
-                        <v-tab style="max-width:140px;" left v-for="char in chars" :key="char.name">
+                        <v-tab style="max-width:180px;" left v-for="char in chars" :key="char.name">
                           {{ char.name }}
                         </v-tab>
 
@@ -74,7 +74,7 @@
                           <v-card flat>
                             <v-list-item>
                               <v-list-item-content color="grey">
-                                <v-img :eager="true" :src="char.src" class="white--text align-end"></v-img>
+                                <v-img style="max-width:180px;" :eager="true" :src="char.src" class="white--text align-end"></v-img>
                               </v-list-item-content>
                               <v-list-item-content>
                                 <v-card-text class="text-center">
