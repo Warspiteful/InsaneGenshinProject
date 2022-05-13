@@ -65,7 +65,7 @@
                       <v-tabs vertical height="800px" center-active>
                         <v-tabs-slider color="teal lighten-3"></v-tabs-slider>
 
-                        <v-tab left v-for="char in chars" :key="char.name">
+                        <v-tab style="max-width:140px;" left v-for="char in chars" :key="char.name">
                           {{ char.name }}
                         </v-tab>
 
