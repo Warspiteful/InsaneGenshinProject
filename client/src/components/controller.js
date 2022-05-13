@@ -96,7 +96,7 @@ export default {
         },
         updateChar() {
 
-            console.log(process.env.DATABASE)
+            console.log(process.env.DATABASE);
 
             (async() => {
 
