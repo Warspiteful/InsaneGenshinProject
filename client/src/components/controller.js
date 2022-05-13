@@ -19,7 +19,8 @@ export default {
         // override the parent template and just use the above title only
         titleTemplate: null,
         rel: 'icon',
-        href: "./favicon.ico"
+        href: "./favicon.ico",
+        description: "This is an insane little program I made because FMK has a lot of data, and I like data."
     },
 
     methods: {
