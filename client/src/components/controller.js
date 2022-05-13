@@ -17,7 +17,7 @@ export default {
 
 
             (async() => {
-                await axios.post(process.env.DATABASE + '/submit', {
+                await axios.post('https://genshin-project.herokuapp.com/submit', {
                     "fuck": this.cards[0].title,
                     "marry": this.cards[1].title,
                     "kill": this.cards[2].title
@@ -37,7 +37,7 @@ export default {
         updateStats() {
             (async() => {
 
-                const stat = await axios.get(process.env.DATABASE + '/stats', )
+                const stat = await axios.get('https://genshin-project.herokuapp.com/stats', )
 
                 const char = stat.data.char;
                 for (let i = 0; i < char.length; i++) {
@@ -97,11 +97,10 @@ export default {
         },
         updateChar() {
 
-            console.log(process.env.DATABASE);
 
             (async() => {
 
-                const res = await axios.get(process.env.DATABASE + '/resp', )
+                const res = await axios.get('https://genshin-project.herokuapp.com/resp', )
                 for (var i = 0; i < res.data.length; i++) {
                     this.cards[i].title = "";
                     this.cards[i].src = "";
