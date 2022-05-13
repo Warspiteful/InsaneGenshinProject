@@ -53,19 +53,13 @@ app.get('/stats', (req, res) => {
     (async() => {
 
 
-        const resp = await model.getAll();
+        const resp = { "char": await model.getAll(), "attr": await model.getAttr() }
 
         res.json(resp);
     })();
 })
 
 
-//Route that handles signup logic
-app.post('/signup', (req, res) => {
-    console.log(req.body.fullname)
-    console.log(req.body.username)
-    console.log(req.body.password)
-})
 
 //Start your server on a specified port
 app.listen(process.env.PORT || port, () => {

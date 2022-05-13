@@ -32,36 +32,72 @@ export default {
 
         },
 
+
         updateStats() {
             (async() => {
 
                 const stat = await axios.get('http://localhost:5000/stats', )
 
-                for (let i = 0; i < stat.data.length; i++) {
+                const char = stat.data.char;
+                for (let i = 0; i < char.length; i++) {
                     this.chars[i] = {}
-                    this.chars[i].name = stat.data[i].charName;
-                    this.chars[i].src = stat.data[i].Image;
-                    this.chars[i].desc = stat.data[i].title;
+                    this.chars[i].name = char[i].charName;
+                    this.chars[i].src = char[i].Image;
+                    this.chars[i].desc = char[i].title;
                     this.chars[i].attributes = {};
-                    this.chars[i].attributes.element = { title: "Element", val: stat.data[i].Element }
-                    this.chars[i].attributes.weapon = { title: "Region", val: stat.data[i].Region }
-                    this.chars[i].attributes.region = { title: "Weapon", val: stat.data[i].Weapon }
+                    this.chars[i].attributes.element = { title: "Element", val: char[i].Element }
+                    this.chars[i].attributes.weapon = { title: "Region", val: char[i].Region }
+                    this.chars[i].attributes.region = { title: "Weapon", val: char[i].Weapon }
                     this.chars[i].stats = {}
 
-                    this.chars[i].stats.f_val = { title: "Fuck", num: Math.round((stat.data[i].f_val / stat.data[i].total) * 100) }
-                    this.chars[i].stats.m_val = { title: "Marry", num: Math.round((stat.data[i].m_val / stat.data[i].total) * 100) }
-                    this.chars[i].stats.k_val = { title: "Kill", num: Math.round((stat.data[i].k_val / stat.data[i].total) * 100) }
+                    this.chars[i].stats.f_val = { title: "Fuck", num: Math.round((char[i].f_val / char[i].total) * 100) }
+                    this.chars[i].stats.m_val = { title: "Marry", num: Math.round((char[i].m_val / char[i].total) * 100) }
+                    this.chars[i].stats.k_val = { title: "Kill", num: Math.round((char[i].k_val / char[i].total) * 100) }
                 }
+
+                const attributes = stat.data.attr;
+
+
+                for (let i = 0; i < attributes.length; i++) {
+                    this.attr[i] = {};
+
+                    this.attr[i].title = attributes[i].title;
+                    this.attr[i].item = {}
+
+                    // console.log(attributes[i].val);
+                    // console.log(attributes[i].val.length);
+                    for (let j = 0; j < attributes[i].val.length; j++) {
+
+
+                        this.attr[i][j] = {}
+
+                        let values = attributes[i].val[j];
+
+                        this.attr[i][j].title = values.Category;
+                        this.attr[i][j].val = {};
+
+
+
+
+                        this.attr[i][j].val[0] = { title: "Fuck", percent: Math.round((values.f / values.total) * 100), total: values.f }
+                        this.attr[i][j].val[1] = { title: "Marry", percent: Math.round((values.m / values.total) * 100), total: values.m }
+                        this.attr[i][j].val[2] = { title: "Kill", percent: Math.round((values.k / values.total) * 100), total: values.k }
+
+                        //console.log(this.attr[i][j]);
+                    }
+
+
+                }
+
+
+
             })();
 
         },
         updateChar() {
 
-            console.log("CHECKED");
-
             (async() => {
 
-                console.log("Entered Async");
 
                 const res = await axios.get('http://localhost:5000/resp', )
                 for (var i = 0; i < res.data.length; i++) {
@@ -80,12 +116,11 @@ export default {
         },
     },
     mounted() {
-        this.updateStats();
         this.updateChar();
-        console.log("HEY");
     },
 
     data: () => ({
+        statBar: null,
         charBar: null,
         navBar: null,
         dialog: false,
@@ -100,6 +135,7 @@ export default {
             { title: 'Keqing', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp', flex: 4 },
             { title: 'Ganyu', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp', flex: 4 },
         ],
-        chars: [{}]
+        chars: [{}],
+        attr: [{}]
     }),
 }

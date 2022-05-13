@@ -39,7 +39,6 @@ class Model extends readModel {
 
 
     async parseIncrement(char, val, type) {
-        console.log(char);
         this.executeSQL("UPDATE characterdb SET " + type + " =  " + type + " + " + val + " WHERE charName = '" + char + "'");
 
     }

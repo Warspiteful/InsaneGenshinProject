@@ -41,8 +41,21 @@ class readModel {
 
     async getAll() {
         let val = await this.executeSQL("SELECT *, f_val + m_val + k_val total FROM characterdb ORDER BY charName ASC;");
-        return this.parseIntoArray(val);
+        return val;
     }
+
+    async getAttr() {
+        let element = await this.executeSQL("SELECT Element Category,Sum(f_val) f,Sum(m_val) m ,Sum(k_val) k,  Sum(f_val) + Sum(m_val) + Sum(k_val) total FROM heroku_b3548b4ef16b308.characterdb group by Element");
+        let weapon = await this.executeSQL("SELECT Weapon Category,Sum(f_val) f,Sum(m_val) m ,Sum(k_val) k,  Sum(f_val) + Sum(m_val) + Sum(k_val) total FROM heroku_b3548b4ef16b308.characterdb group by Weapon");
+        let region = await this.executeSQL("SELECT Region Category,Sum(f_val) f,Sum(m_val) m ,Sum(k_val) k,  Sum(f_val) + Sum(m_val) + Sum(k_val) total FROM heroku_b3548b4ef16b308.characterdb group by Region");
+
+
+
+        return [{ title: "Element", val: element }, { title: "Weapon", val: weapon }, { title: "Region", val: region }];
+    }
+
+
+
     async getImage(characterName) {
         return this.parseData(
             this.executeSQL("SELECT Image FROM characterdb WHERE charName = '" + characterName + "';")
@@ -66,14 +79,12 @@ class readModel {
     }
 
     async executeSQL(sql) {
-        console.log(sql);
         const pro = new Promise(resolve => {
             con.query(sql, function(err, result) {
                 if (err) {
                     console.log("ERROR");
                     throw err;
                 }
-                console.log("SUCCESS");
                 resolve(result);
             })
         });

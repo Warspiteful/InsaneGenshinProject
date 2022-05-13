@@ -1,6 +1,10 @@
 <template>
   <v-app>
+    <v-toolbar app color="primary" dark>
+      <h1>Genshin Fuck Marry Kill</h1>
+    </v-toolbar>
     <v-container fluid>
+
       <v-row align="center" justify="center">
 
         <v-col cols="4" align="center" justify="center" v-for="cat in categories" :key="cat">
@@ -11,7 +15,7 @@
         <TransitionGroup class="row" name="list">
           <v-col name="list" v-for="card in cards" :key="card.title" :cols="4" align="center" justify="center">
 
-            <v-card width="55%" height="auto" key="card.title">
+            <v-card elevation="5" width="55%" height="auto" key="card.title">
 
               <v-img :src="card.src" class="white--text align-end">
                 <v-card-title v-text="card.title"></v-card-title>
@@ -30,7 +34,6 @@
         <v-col cols="12">
           <v-row>
             <v-col cols="12" order-sm="first" order="last" sm="4">
-              Coded By Justin
             </v-col>
             <v-col cols="12" sm="4" order-sm="first" @click="submitRound">
               <v-btn>Submit</v-btn>
@@ -62,7 +65,7 @@
                       <v-tabs vertical height="800px" center-active>
                         <v-tabs-slider color="teal lighten-3"></v-tabs-slider>
 
-                        <v-tab left v-for="(char, index) in chars" :key="index">
+                        <v-tab left v-for="char in chars" :key="char.name">
                           {{ char.name }}
                         </v-tab>
 
@@ -92,7 +95,7 @@
 
                                     <v-col cols="4" v-for="attr in char.attributes" :key="attr.key">
                                       <h2>{{ attr.title }}</h2>
-                                      <h4>{{attr.val}}</h4>
+                                      <h4>{{ attr.val }}</h4>
                                       <hr>
 
                                     </v-col>
@@ -112,50 +115,37 @@
 
 
                     <v-tab-item key="1">
-                      <v-tabs vertical fixed-tabs>
-                        <v-tab>
-                          Top/Bottom Characters
-                        </v-tab>
-                        <v-tab-item>
-                          <v-card flat>
-                            <v-card-text>
-                              Insert DATA HERE
-                            </v-card-text>
-                          </v-card>
-                        </v-tab-item>
+                      <v-tabs v-model="statBar" vertical fixed-tabs>
 
-                        <v-tab>
-                          Top/Bottom Element
+                        <v-tab v-for="attri in attr" :key="attri.title">
+                          {{ attri.title }}
                         </v-tab>
-                        <v-tab-item>
-                          <v-card flat>
-                            <v-card-text>
-                              Insert DATA HERE
-                            </v-card-text>
-                          </v-card>
-                        </v-tab-item>
 
-                        <v-tab>
-                          Top/Bottom Weapon
-                        </v-tab>
-                        <v-tab-item>
-                          <v-card flat>
-                            <v-card-text>
-                              Insert DATA HERE
-                            </v-card-text>
-                          </v-card>
-                        </v-tab-item>
+                        <v-tabs-items v-model="statBar">
+                          <v-tab-item v-for="attri in attr" :key="attri.title">
+                            <v-card flat>
 
-                        <v-tab>
-                          Top/Bottom Region
-                        </v-tab>
-                        <v-tab-item>
-                          <v-card flat>
-                            <v-card-text>
-                              Insert DATA HERE
-                            </v-card-text>
-                          </v-card>
-                        </v-tab-item>
+                              <v-card-text>
+                                <v-row class="stretch" align="center">
+
+                                  <v-col cols="4" v-for="stat in attri" :key="stat.title">
+
+
+                                    <h1>{{ stat.title }}</h1>
+
+                                    <span v-for="(at) in stat.val" :key="at.title">
+                                      <h2>{{ at.title }}:{{ at.percent }}% - {{ at.total }}</h2>
+                                    </span>
+
+                                  </v-col>
+
+                                </v-row>
+
+                              </v-card-text>
+
+                            </v-card>
+                          </v-tab-item>
+                        </v-tabs-items>
                       </v-tabs>
 
                     </v-tab-item>
@@ -163,14 +153,14 @@
                     <v-tab-item key="2">
                       <v-tabs vertical fixed-tabs>
                         <v-tab>
-                          Setting 1
+                          Credits
                         </v-tab>
 
 
                         <v-tab-item>
                           <v-card flat>
                             <v-card-text>
-                              SETTING 1 CONFIG HERE
+                              Created by <a href="https://twitter.com/warspiteful">Warspiteful</a>
                             </v-card-text>
                           </v-card>
                         </v-tab-item>
