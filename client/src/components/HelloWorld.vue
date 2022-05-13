@@ -1,7 +1,7 @@
 
 <template>
   <v-app>
-    <v-app-bar color="primary" dark>
+    <v-app-bar absolute color="primary" dark>
       <h1>Genshin Fuck Marry Kill</h1>
     </v-app-bar>
     <v-container fluid>
@@ -19,7 +19,6 @@
             <v-card elevation="5" width="55%" height="auto" key="card.title">
 
               <v-img :src="card.src" class="white--text align-end">
-                <v-card-title v-text="card.title"></v-card-title>
               </v-img>
             </v-card>
 

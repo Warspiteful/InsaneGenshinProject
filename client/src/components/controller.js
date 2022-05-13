@@ -18,9 +18,21 @@ export default {
         title: 'Genshin Fuck Marry Kill',
         // override the parent template and just use the above title only
         titleTemplate: null,
-        rel: 'icon',
-        href: "./favicon.ico",
-        description: "This is an insane little program I made because FMK has a lot of data, and I like data."
+
+        meta: [
+            { charset: 'utf-8' },
+            {
+
+                vmid: 'description',
+                name: 'description',
+                content: 'This is an insane little program I made because FMK has a lot of data, and I like data.'
+            }
+        ],
+        link: [{
+            rel: "shortcut icon",
+            href: "/favicon.ico"
+        }]
+
     },
 
     methods: {
