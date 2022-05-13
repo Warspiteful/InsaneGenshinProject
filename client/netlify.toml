@@ -1,0 +1,4 @@
+
+
+[context.production]
+  environment = { DATABASE = "https://genshin-project.herokuapp.com/" }

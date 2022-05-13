@@ -2,6 +2,7 @@ import draggable from "vuedraggable";
 import axios from "axios";
 
 
+
 export default {
 
     name: 'HelloWorld',
@@ -96,10 +97,9 @@ export default {
         },
         updateChar() {
 
-            console.log(process.env.DATABASE);
+            console.log(env);
 
             (async() => {
-
 
                 const res = await axios.get(process.env.DATABASE + '/resp', )
                 for (var i = 0; i < res.data.length; i++) {
