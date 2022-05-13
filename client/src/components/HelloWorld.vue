@@ -1,3 +1,4 @@
+
 <template>
   <v-app>
     <v-app-bar color="primary" dark>
@@ -27,7 +28,7 @@
       </draggable>
     </v-container>
 
-    <v-container>
+    <v-container fluid>
       <v-row class="text-center" align-center>
 
 
@@ -39,19 +40,21 @@
               <v-btn>Submit</v-btn>
 
             </v-col>
-            <v-col cols="12" sm="4">
-              <v-dialog v-model="dialog" width="47%" height="auto">
+            <v-col cols="12" sm="4" flex>
+              <v-dialog v-model="dialog" width="44%" height="auto">
                 <template v-slot:activator="{ on, attrs }">
-                  <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on" @click="updateStats">
-                    Statistics
-                  </v-btn>
+                  <div class="text-xs-center">
+                    <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on" @click="updateStats">
+                      Statistics
+                    </v-btn>
+                  </div>
                 </template>
 
                 <v-card width="auto">
                   <v-toolbar flat color="primary" dark>
                     <v-toolbar-title>User Profile</v-toolbar-title>
                   </v-toolbar>
-                  <v-tabs v-model="navBar" background-color="deep-purple accent-4" centered dark icons-and-text>
+                  <v-tabs v-model="navBar" background-color="deep-purple accent-4" centered fluid dark icons-and-text>
                     <v-tabs-slider></v-tabs-slider>
 
                     <v-tab v-for="(cat, index) in navBarCat" :key="index">
@@ -62,7 +65,7 @@
 
                   <v-tabs-items v-model="navBar">
                     <v-tab-item key="0">
-                      <v-tabs vertical height="800px" center-active>
+                      <v-tabs center-active>
                         <v-tabs-slider color="teal lighten-3"></v-tabs-slider>
 
                         <v-tab left v-for="char in chars" :key="char.name">
@@ -73,8 +76,9 @@
 
                           <v-card flat>
                             <v-list-item>
-                              <v-list-item-content color="grey">
-                                <v-img :eager="true" :src="char.src" class="white--text align-end"></v-img>
+                              <v-list-item-content scolor="grey">
+                                  <v-img contain max-height="400" :eager="true" :src="char.src"
+                                    class="white--text align-end"></v-img>
                               </v-list-item-content>
                               <v-list-item-content>
                                 <v-card-text class="text-center">

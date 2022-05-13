@@ -1,6 +1,9 @@
 import draggable from "vuedraggable";
 import axios from "axios";
+import Vue from 'vue';
+import VueMeta from 'vue-meta';
 
+Vue.use(VueMeta)
 
 
 export default {
@@ -9,6 +12,14 @@ export default {
 
     components: {
         draggable,
+    },
+
+    metaInfo: {
+        title: 'Genshin Fuck Marry Kill',
+        // override the parent template and just use the above title only
+        titleTemplate: null,
+        rel: 'icon',
+        href: "./favicon.ico"
     },
 
     methods: {
