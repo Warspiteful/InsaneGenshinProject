@@ -16,7 +16,7 @@ export default {
 
 
             (async() => {
-                await axios.post('http://localhost:5000/submit', {
+                await axios.post(process.env.database + '/submit', {
                     "fuck": this.cards[0].title,
                     "marry": this.cards[1].title,
                     "kill": this.cards[2].title
@@ -36,7 +36,7 @@ export default {
         updateStats() {
             (async() => {
 
-                const stat = await axios.get('http://localhost:5000/stats', )
+                const stat = await axios.get(process.env.database + '/stats', )
 
                 const char = stat.data.char;
                 for (let i = 0; i < char.length; i++) {
@@ -99,7 +99,7 @@ export default {
             (async() => {
 
 
-                const res = await axios.get('http://localhost:5000/resp', )
+                const res = await axios.get(process.env.database + '/resp', )
                 for (var i = 0; i < res.data.length; i++) {
                     this.cards[i].title = "";
                     this.cards[i].src = "";
