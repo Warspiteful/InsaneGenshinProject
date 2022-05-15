@@ -116,16 +116,16 @@
                           </v-list>
                         </v-menu>
 
-                        <v-tabs-items v-model="charsBar" eager>
+                        <v-tabs-items v-model="charsBar" eager="true">
                           <v-tab-item v-for="char in chars" :key="char.name">
                             <v-card flat>
                               <v-list-item>
-                                <v-list-item-content class="d-none d-lg-flex" scolor="grey">
-                                  <v-img contain max-height="400" :eager="true" :src="char.src"
+                                <v-list-item-content eager="true" class="d-none d-lg-flex" color="grey">
+                                  <v-img eager="true" contain max-height="400"  :src="char.src"
                                     class="white--text align-end"></v-img>
                                 </v-list-item-content>
 
-                                <v-list-item-content>
+                                <v-list-item-content eager="true">
                                   <v-card-text class="text-center">
                                     <v-row>
                                       <v-col>
