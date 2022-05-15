@@ -69,7 +69,6 @@
                       </v-tabs>
                     </div>
 
-
                     <v-menu class="d-flex d-sm-none" bottom center>
                       <template v-slot:activator="{ on }">
                         <div align="center">
@@ -165,68 +164,106 @@
 
 
                       <v-tab-item key="1">
-                        <v-tabs v-model="statBar" vertical fixed-tabs>
 
-                          <v-tab v-for="attri in attr" :key="attri.title">
-                            {{ attri.title }}
-                          </v-tab>
+                        <v-menu class="d-flex d-sm-none" bottom center>
+                          <template v-slot:activator="{ on }">
+                            <div align="center">
+                              <v-btn text class="d-flex d-sm-none align-self-center" v-on="on">
+                                Analysis Selection
+                                <v-icon right>mdi-menu-down</v-icon>
+                              </v-btn>
+                            </div>
+                          </template>
 
-                          <v-tabs-items v-model="statBar">
-                            <v-tab-item v-for="attri in attr" :key="attri.title">
-                              <v-card flat>
+                          <v-list style="max-height: 300px" class="overflow-y-auto  grey lighten-3">
+                            <v-list-item v-for="(item, index) in attr" :key="item.name">
+                              <v-list-item-title @click="statBar = index">{{ item.title }}</v-list-item-title>
+                            </v-list-item>
+                          </v-list>
+                        </v-menu>
 
-                                <v-card-text>
-                                  <v-row class="stretch" align="center">
+                        <v-row>
+                          <v-col class="d-none d-sm-flex" :cols="2">
+                            <v-tabs v-model="statBar" vertical fixed-tabs>
+                              <v-tabs-slider></v-tabs-slider>
 
-                                    <v-col cols="4" v-for="stat in attri" :key="stat.title">
+                              <v-tab v-for="attri in attr" :key="attri.title">
+                                {{ attri.title }}
+                              </v-tab>
+                            </v-tabs>
 
-
-                                      <h1>{{ stat.title }}</h1>
-
-                                      <span v-for="(at) in stat.val" :key="at.title">
-                                        <h2>{{ at.title }}:{{ at.percent }}% - {{ at.total }}</h2>
-                                      </span>
-
-                                    </v-col>
-
-                                  </v-row>
-
-                                </v-card-text>
-
-                              </v-card>
-                            </v-tab-item>
-                          </v-tabs-items>
-                        </v-tabs>
+                          </v-col>
+                          <v-col :cols="12" sm="10">
+                            <v-tabs-items v-model="statBar">
+                              <v-tab-item v-for="attri in attr" :key="attri.title">
+                                <v-card flat>
+                                  <v-card-text>
+                                    <v-row class="stretch" align="center">
+                                      <v-col cols="12" sm="4" v-for="stat in attri" :key="stat.title">
+                                        <h1>{{ stat.title }}</h1>
+                                        <span v-for="(at) in stat.val" :key="at.title">
+                                          <h2>{{ at.title }}:{{ at.percent }}% - {{ at.total }}</h2>
+                                        </span>
+                                      </v-col>
+                                    </v-row>
+                                  </v-card-text>
+                                </v-card>
+                              </v-tab-item>
+                            </v-tabs-items>
+                          </v-col>
+                        </v-row>
 
                       </v-tab-item>
 
                       <v-tab-item key="2">
-                        <v-tabs vertical fixed-tabs>
-                          <v-tab>
-                            Credits
-                          </v-tab>
-                          <v-tab>
-                            Filters
-                          </v-tab>
 
+                        <v-menu class="d-flex d-sm-none" bottom center>
+                          <template v-slot:activator="{ on }">
+                            <div align="center">
+                              <v-btn text class="d-flex d-sm-none align-self-center" v-on="on">
+                                Miscelleanous Selection
+                                <v-icon right>mdi-menu-down</v-icon>
+                              </v-btn>
+                            </div>
+                          </template>
 
-                          <v-tab-item>
-                            <v-card flat>
-                              <v-card-text>
-                                Created by <a href="https://twitter.com/warspiteful">Warspiteful</a>
-                              </v-card-text>
-                            </v-card>
-                          </v-tab-item>
+                          <v-list style="max-height: 300px" class="overflow-y-auto  grey lighten-3">
+                            <v-list-item v-for="(item, index) in miscCat" :key="item.name">
+                              <v-list-item-title @click="miscBar = index">{{ item }}</v-list-item-title>
+                            </v-list-item>
+                          </v-list>
+                        </v-menu>
 
-                          <v-tab-item>
-                            <v-card flat>
-                              <v-card-text>
-                                Filters Here:
-                              </v-card-text>
-                            </v-card>
-                          </v-tab-item>
+                        <v-row>
+                          <v-col cols="2" class="d-none d-sm-flex">
+                            <v-tabs v-model="miscBar" vertical fixed-tabs>
+                              <v-tab v-for="(cat, index) in miscCat" :key="index">
+                                {{cat}}
+                              </v-tab>
+                            </v-tabs>
+                          </v-col>
 
-                        </v-tabs>
+                          <v-col cols="10">
+                            <v-tabs-items v-model="miscBar">
+                              <v-tab-item key="0">
+                                <v-card flat>
+                                  <v-card-text>
+                                    Created by <a href="https://twitter.com/warspiteful">Warspiteful</a>
+                                  </v-card-text>
+                                </v-card>
+                              </v-tab-item>
+
+                              <v-tab-item key="1">
+                                <v-card flat>
+                                  <v-card-text>
+                                    Filters Here:
+                                  </v-card-text>
+                                </v-card>
+                              </v-tab-item>
+                            </v-tabs-items>
+                          </v-col>
+                        </v-row>
+
                       </v-tab-item>
 
                     </v-tabs-items>

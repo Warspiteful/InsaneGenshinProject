@@ -138,8 +138,7 @@ export default {
             const temp = this.chars.slice()
             this.tabs = temp.splice(0, (window.innerWidth / 150) - 1)
             this.more = temp.splice(0)
-            console.log("Resized");
-            console.log(this.charsBar);
+
         },
         addItem(item) {
             const removed = this.tabs.splice(this.tabs.length - 1, 1)
@@ -155,11 +154,13 @@ export default {
     },
 
     data: () => ({
+        miscBar: null,
         charsBar: null,
         statBar: null,
         charBar: null,
         navBar: null,
         dialog: false,
+        miscCat: ["Credits", "Filters"],
         navBarCat: [
             "Characters", "Analysis", "Settings"
         ],
