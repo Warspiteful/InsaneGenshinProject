@@ -36,7 +36,8 @@ export default {
       this.futureIndex = futureIndex;
       console.log("HELP")
       return false; // disable sort
-    }
+    },
+      
   }
 };
 </script>

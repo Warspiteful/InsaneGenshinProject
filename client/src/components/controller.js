@@ -22,16 +22,11 @@ export default {
         meta: [
             { charset: 'utf-8' },
             {
-
-                vmid: 'description',
                 name: 'description',
                 content: 'This is an insane little program I made because FMK has a lot of data, and I like data.'
             }
         ],
-        link: [{
-            rel: "shortcut icon",
-            href: "/favicon.ico"
-        }]
+
 
     },
 
@@ -139,16 +134,33 @@ export default {
             })();
 
         },
+        onResize() {
+            const temp = this.chars.slice()
+            this.tabs = temp.splice(0, (window.innerWidth / 150) - 1)
+            this.more = temp.splice(0)
+
+        },
+        addItem(item) {
+            const removed = this.tabs.splice(this.tabs.length - 1, 1)
+            this.tabs.push(
+                ...this.more.splice(this.more.indexOf(item), 1)
+            )
+            this.more.push(...removed)
+            this.$nextTick(() => { this.currentItem = 'tab-' + item })
+        },
     },
     mounted() {
         this.updateChar();
     },
 
     data: () => ({
+        miscBar: null,
+        charsBar: null,
         statBar: null,
         charBar: null,
         navBar: null,
         dialog: false,
+        miscCat: ["Credits", "Filters"],
         navBarCat: [
             "Characters", "Analysis", "Settings"
         ],
@@ -161,6 +173,8 @@ export default {
             { title: 'Ganyu', src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp', flex: 4 },
         ],
         chars: [{}],
-        attr: [{}]
+        attr: [{}],
+        tabs: [],
+        more: []
     }),
 }
