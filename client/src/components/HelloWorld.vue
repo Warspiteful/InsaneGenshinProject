@@ -2,7 +2,11 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark v-resize="onResize">
-      <h1>Genshin Fuck Marry Kill</h1>
+      <v-row>
+        <v-col class="mobile-text"  cols="12">
+          <h1>Genshin Fuck Marry Kill</h1>
+        </v-col>
+      </v-row>
     </v-app-bar>
     <v-content>
       <v-container fluid>
@@ -121,7 +125,7 @@
                             <v-card flat>
                               <v-list-item>
                                 <v-list-item-content eager="true" class="d-none d-lg-flex" color="grey">
-                                  <v-img eager="true" contain max-height="400"  :src="char.src"
+                                  <v-img eager="true" contain max-height="400" :src="char.src"
                                     class="white--text align-end"></v-img>
                                 </v-list-item-content>
 
@@ -238,7 +242,7 @@
                           <v-col cols="2" class="d-none d-sm-flex">
                             <v-tabs v-model="miscBar" vertical fixed-tabs>
                               <v-tab v-for="(cat, index) in miscCat" :key="index">
-                                {{cat}}
+                                {{ cat }}
                               </v-tab>
                             </v-tabs>
                           </v-col>
@@ -299,5 +303,15 @@
    animations can be calculated correctly. */
 .list-leave-active {
   position: absolute;
+}
+
+.mobile-text {
+  text-align: left !important;
+}
+
+@media (max-width: 600px) {
+  .mobile-text {
+    text-align: center !important;
+  }
 }
 </style>
