@@ -42,7 +42,6 @@ export default {
         },
 
         async updateData() {
-
             const stat = await axios.get(
                 'https://genshin-project.herokuapp.com/stats',
             )
@@ -66,6 +65,10 @@ export default {
                     title: 'Weapon',
                     val: char[i].Weapon,
                 }
+                this.chars[i].attributes.gender = {
+                    title: 'Gender',
+                    val: char[i].Gender,
+                }
                 this.chars[i].stats = {}
 
                 this.chars[i].stats.f_val = {
@@ -83,12 +86,13 @@ export default {
             }
 
             const attributes = stat.data.attr
+            console.log(attributes)
+
 
             for (let i = 0; i < attributes.length; i++) {
                 this.attr[attributes[i].title] = {}
                     // console.log(attributes[i].val);
                     // console.log(attributes[i].val.length);
-                console.log(this.attr);
 
                 let label = attributes[i].title
                 attributes[i].title = {}
@@ -111,23 +115,24 @@ export default {
                         percent: Math.round((values.k / values.total) * 100),
                         total: values.k,
                     }
-
                 }
             }
+        },
 
-
+        printFilter() {
+            console.log(this.filter)
         },
 
         updateStatCallback() {
-            (async() => {
-                await this.updateData();
-            })
+            async() => {
+                await this.updateData()
+            }
         },
 
         update() {
             (async() => {
-                await this.updateData();
-                this.updateChar();
+                await this.updateData()
+                this.updateChar()
             })()
         },
 
@@ -135,19 +140,19 @@ export default {
             var result = new Array(n),
                 len = Object.keys(arr).length,
                 keys = Object.keys(arr),
-                taken = new Array(len);
+                taken = new Array(len)
             if (n > len)
-                throw new RangeError("getRandom: more elements taken than available");
+                throw new RangeError('getRandom: more elements taken than available')
             while (n--) {
-                var x = keys[Math.floor(Math.random() * len)];
-                result[n] = arr[x in taken ? taken[x] : x];
-                taken[x] = --len in taken ? taken[len] : len;
+                var x = keys[Math.floor(Math.random() * len)]
+                result[n] = arr[x in taken ? taken[x] : x]
+                taken[x] = --len in taken ? taken[len] : len
             }
-            return result;
+            return result
         },
 
         updateChar() {
-            console.log(this.chars);
+            console.log(this.chars)
             let res = this.getRandom(this.chars, 3)
             for (var i = 0; i < res.length; i++) {
                 this.cards[i].title = ''
@@ -155,32 +160,65 @@ export default {
                 this.cards[i].title = res[i].name
                 this.cards[i].src = res[i].src
             }
+        },
 
-        }
+        addItem(item) {
+            const removed = this.tabs.splice(this.tabs.length - 1, 1)
+            this.tabs.push(...this.more.splice(this.more.indexOf(item), 1))
+            this.more.push(...removed)
+            this.$nextTick(() => {
+                this.currentItem = 'tab-' + item
+            })
+        },
+
+        toggleLabel(adultMode) {
+            if (adultMode) {
+                this.categories[0] = 'Fuck'
+            } else {
+                this.categories[0] = 'Friend'
+            }
+        },
+        filterMethod() {
+            let filteredList = []
+
+            for (let i = 0; i < this.chars.length; i++) {
+                if (
+                    filteredList[0].length > 0 &&
+                    filteredList[0].includes(this.chars[i].attributes.element.val)
+                ) {
+                    continue
+                }
+
+                if (
+                    filteredList[1].length > 0 &&
+                    filteredList[1].includes(this.chars[i].attributes.weapon.val)
+                ) {
+                    continue
+                }
+
+                if (
+                    filteredList[2].length > 0 &&
+                    filteredList[2].includes(this.chars[i].attributes.region.val)
+                ) {
+                    continue
+                }
+
+                filteredList.addItem(this.chars[i])
+            }
+            return filteredList
+        },
     },
 
-    addItem(item) {
-        const removed = this.tabs.splice(this.tabs.length - 1, 1)
-        this.tabs.push(...this.more.splice(this.more.indexOf(item), 1))
-        this.more.push(...removed)
-        this.$nextTick(() => {
-            this.currentItem = 'tab-' + item
-        })
-    },
-
-    toggleLabel(adultMode) {
-        if (adultMode) {
-            this.categories[0] = 'Fuck'
-        } else {
-            this.categories[0] = 'Friend'
-        }
-    },
     mounted() {
         this.update()
     },
 
     data: () => ({
-        filter: null,
+        filter: [
+            [],
+            [],
+            []
+        ],
         adultMode: null,
         miscBar: null,
         charsBar: null,
@@ -210,6 +248,6 @@ export default {
         chars: [{}],
         attr: {},
         tabs: [],
-        displayedChars: [],
+        displayedChars: [{}],
     }),
 }

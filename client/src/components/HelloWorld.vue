@@ -40,8 +40,8 @@
             <v-row>
               <v-col cols="12" order-sm="first" order="last" sm="4">
               </v-col>
-              <v-col cols="12" sm="4" @click="submitRound">
-                <v-img width="10%" contain src="../assets/Stamp.png"></v-img>
+              <v-col cols="12" sm="4" >
+              <v-btn @click="submitRound">Submit</v-btn>
               </v-col>
               <v-col cols="12" sm="4" flex>
                 <v-dialog v-model="dialog" width="44%" height="auto">
@@ -265,12 +265,12 @@
                                 <v-card flat>
                                   <v-card-text>
                                     <v-row>
-                                      <div v-for="item, label in attr" :key="label">
+                                      <div v-for="item, label,index in attr" :key="label">
                                         {{ label }}
                                         <v-col cols="12" sm="4" md="4">
 
-                                          <v-checkbox v-model="filter" v-for="element, keyed in item" :label="keyed"
-                                            :value="keyed" :key="keyed"></v-checkbox>
+                                          <v-checkbox multiple v-model="filter[index]" v-for="element, keyed in item" :label="keyed"
+                                            :value="keyed" :key="keyed" @change="printFilter"></v-checkbox>
                                         </v-col>
 
                                       </div>
