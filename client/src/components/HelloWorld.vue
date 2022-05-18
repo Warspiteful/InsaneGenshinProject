@@ -1,7 +1,7 @@
 
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark v-resize="onResize">
+    <v-app-bar app color="primary" dark >
       <v-row>
         <v-col class="mobile-text" cols="12">
           <h1>Genshin Fuck Marry Kill</h1>
@@ -47,7 +47,7 @@
                 <v-dialog v-model="dialog" width="44%" height="auto">
                   <template v-slot:activator="{ on, attrs }">
                     <div class="text-xs-center">
-                      <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on" @click="updateStats">
+                      <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on" @click="updateStatCallback">
                         Statistics
                       </v-btn>
                     </div>
