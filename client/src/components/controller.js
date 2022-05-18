@@ -180,7 +180,7 @@ export default {
                 this.categories[0] = 'Friend'
             }
         },
-        filterMethod() {
+        filterMethod(index) {
             console.log(this.filter)
             let filteredList = []
 
@@ -216,7 +216,12 @@ export default {
                 filteredList.push(this.chars[i])
             }
             this.displayedChars = filteredList
-            this.updateChar();
+
+            if (this.displayedChars.length < 3) {
+                this.filter[index].pop();
+            } else {
+                this.updateChar();
+            }
         },
     },
 
