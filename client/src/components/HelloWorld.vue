@@ -195,8 +195,8 @@
                             <v-tabs v-model="statBar" vertical fixed-tabs>
                               <v-tabs-slider></v-tabs-slider>
 
-                              <v-tab v-for="attri in attr" :key="attri.title">
-                                {{ attri.title }}
+                              <v-tab v-for="attri,label in attr" :key="attri.title">
+                                {{ label}}
                               </v-tab>
                             </v-tabs>
 
@@ -207,10 +207,10 @@
                                 <v-card flat>
                                   <v-card-text>
                                     <v-row class="stretch" align="center">
-                                      <v-col cols="12" sm="4" v-for="stat in attri" :key="stat.title">
-                                        <h1>{{ stat.title }}</h1>
+                                      <v-col cols="12" sm="4" v-for="stat, cat in attri" :key="stat.title">
+                                        <h1>{{ cat }}</h1>
                                         <span v-for="(at, index) in stat.val" :key="at.title">
-                                          <h2>{{ categories[index] }}:{{ at.percent }}%</h2>
+                                          <h2>{{index}}:{{ at.percent }}%</h2>
                                         </span>
                                       </v-col>
                                     </v-row>
