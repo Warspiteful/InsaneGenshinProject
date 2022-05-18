@@ -86,8 +86,6 @@ export default {
             }
 
             const attributes = stat.data.attr
-            console.log(attributes)
-
 
             for (let i = 0; i < attributes.length; i++) {
                 this.attr[attributes[i].title] = {}
@@ -119,8 +117,13 @@ export default {
             }
         },
 
-        printFilter() {
-            console.log(this.filter)
+        initialize() {
+            (async() => {
+                await this.updateData()
+                this.displayedChars = this.chars
+
+                this.updateChar()
+            })()
         },
 
         updateStatCallback() {
@@ -152,8 +155,7 @@ export default {
         },
 
         updateChar() {
-            console.log(this.chars)
-            let res = this.getRandom(this.chars, 3)
+            let res = this.getRandom(this.displayedChars, 3)
             for (var i = 0; i < res.length; i++) {
                 this.cards[i].title = ''
                 this.cards[i].src = ''
@@ -179,42 +181,52 @@ export default {
             }
         },
         filterMethod() {
+            console.log(this.filter)
             let filteredList = []
 
             for (let i = 0; i < this.chars.length; i++) {
                 if (
-                    filteredList[0].length > 0 &&
-                    filteredList[0].includes(this.chars[i].attributes.element.val)
+                    this.filter[0].length > 0 &&
+                    !this.filter[0].includes(this.chars[i].attributes.element.val)
                 ) {
                     continue
                 }
 
                 if (
-                    filteredList[1].length > 0 &&
-                    filteredList[1].includes(this.chars[i].attributes.weapon.val)
+                    this.filter[1].length > 0 &&
+                    !this.filter[1].includes(this.chars[i].attributes.weapon.val)
                 ) {
                     continue
                 }
 
                 if (
-                    filteredList[2].length > 0 &&
-                    filteredList[2].includes(this.chars[i].attributes.region.val)
+                    this.filter[2].length > 0 &&
+                    !this.filter[2].includes(this.chars[i].attributes.region.val)
                 ) {
                     continue
                 }
 
-                filteredList.addItem(this.chars[i])
+                if (
+                    this.filter[3].length > 0 &&
+                    !this.filter[3].includes(this.chars[i].attributes.gender.val)
+                ) {
+                    continue
+                }
+
+                filteredList.push(this.chars[i])
             }
-            return filteredList
+            this.displayedChars = filteredList
+            this.updateChar();
         },
     },
 
     mounted() {
-        this.update()
+        this.initialize()
     },
 
     data: () => ({
         filter: [
+            [],
             [],
             [],
             []

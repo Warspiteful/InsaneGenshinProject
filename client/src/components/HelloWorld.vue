@@ -270,7 +270,7 @@
                                         <v-col cols="12" sm="4" md="4">
 
                                           <v-checkbox multiple v-model="filter[index]" v-for="element, keyed in item" :label="keyed"
-                                            :value="keyed" :key="keyed" @change="printFilter"></v-checkbox>
+                                            :value="keyed" :key="keyed" @change="filterMethod"></v-checkbox>
                                         </v-col>
 
                                       </div>
