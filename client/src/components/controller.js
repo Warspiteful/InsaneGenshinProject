@@ -57,11 +57,11 @@ export default {
                     title: 'Element',
                     val: char[i].Element,
                 }
-                this.chars[i].attributes.weapon = {
+                this.chars[i].attributes.region = {
                     title: 'Region',
                     val: char[i].Region,
                 }
-                this.chars[i].attributes.region = {
+                this.chars[i].attributes.weapon = {
                     title: 'Weapon',
                     val: char[i].Weapon,
                 }
@@ -181,7 +181,7 @@ export default {
             }
         },
         filterMethod(index) {
-            console.log(this.filter)
+            //    console.log(this.filter)
             let filteredList = []
 
             for (let i = 0; i < this.chars.length; i++) {
@@ -196,6 +196,7 @@ export default {
                     this.filter[1].length > 0 &&
                     !this.filter[1].includes(this.chars[i].attributes.weapon.val)
                 ) {
+                    //            console.log(this.chars[i].attributes.weapon.val);
                     continue
                 }
 
@@ -217,8 +218,10 @@ export default {
             }
             this.displayedChars = filteredList
 
+            //    console.log(filteredList);
             if (this.displayedChars.length < 3) {
                 this.filter[index].pop();
+                alert("Invalid Combination of Filters.");
             } else {
                 this.updateChar();
             }
