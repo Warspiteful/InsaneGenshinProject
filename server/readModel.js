@@ -48,10 +48,11 @@ class readModel {
         let element = await this.executeSQL("SELECT Element Category,Sum(f_val) f,Sum(m_val) m ,Sum(k_val) k,  Sum(f_val) + Sum(m_val) + Sum(k_val) total FROM heroku_b3548b4ef16b308.characterdb group by Element");
         let weapon = await this.executeSQL("SELECT Weapon Category,Sum(f_val) f,Sum(m_val) m ,Sum(k_val) k,  Sum(f_val) + Sum(m_val) + Sum(k_val) total FROM heroku_b3548b4ef16b308.characterdb group by Weapon");
         let region = await this.executeSQL("SELECT Region Category,Sum(f_val) f,Sum(m_val) m ,Sum(k_val) k,  Sum(f_val) + Sum(m_val) + Sum(k_val) total FROM heroku_b3548b4ef16b308.characterdb group by Region");
+        let gender = await this.executeSQL("SELECT Gender Category,Sum(f_val) f,Sum(m_val) m ,Sum(k_val) k,  Sum(f_val) + Sum(m_val) + Sum(k_val) total FROM heroku_b3548b4ef16b308.characterdb group by Gender");
 
 
 
-        return [{ title: "Element", val: element }, { title: "Weapon", val: weapon }, { title: "Region", val: region }];
+        return [{ title: "Element", val: element }, { title: "Weapon", val: weapon }, { title: "Region", val: region }, { title: "Gender", val: gender }];
     }
 
 

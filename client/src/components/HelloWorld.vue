@@ -1,14 +1,14 @@
 
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark v-resize="onResize">
+    <v-app-bar app color="primary" dark >
       <v-row>
-        <v-col class="mobile-text"  cols="12">
+        <v-col class="mobile-text" cols="12">
           <h1>Genshin Fuck Marry Kill</h1>
         </v-col>
       </v-row>
     </v-app-bar>
-    <v-content>
+    <v-content class="background">
       <v-container fluid>
 
         <v-row align="center" justify="center">
@@ -21,9 +21,9 @@
           <TransitionGroup class="row" name="list">
             <v-col name="list" v-for="card in cards" :key="card.title" :cols="4" align="center" justify="center">
 
-              <v-card elevation="5" width="55%" height="auto" key="card.title">
+              <v-card style="padding: 10px 10px;" dark elevation="7" width="55%" height="auto" key="card.title">
 
-                <v-img :src="card.src" class="white--text align-end">
+                <v-img :src="card.src" center class="white--text align-end">
                 </v-img>
               </v-card>
 
@@ -40,15 +40,14 @@
             <v-row>
               <v-col cols="12" order-sm="first" order="last" sm="4">
               </v-col>
-              <v-col cols="12" sm="4" order-sm="first" @click="submitRound">
-                <v-btn>Submit</v-btn>
-
+              <v-col cols="12" sm="4" >
+              <v-btn @click="submitRound">Submit</v-btn>
               </v-col>
               <v-col cols="12" sm="4" flex>
                 <v-dialog v-model="dialog" width="44%" height="auto">
                   <template v-slot:activator="{ on, attrs }">
                     <div class="text-xs-center">
-                      <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on" @click="updateStats">
+                      <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on" @click="updateStatCallback">
                         Statistics
                       </v-btn>
                     </div>
@@ -120,22 +119,25 @@
                           </v-list>
                         </v-menu>
 
-                        <v-tabs-items v-model="charsBar" eager="true">
+                        <v-tabs-items v-model="charsBar" eager>
                           <v-tab-item v-for="char in chars" :key="char.name">
                             <v-card flat>
                               <v-list-item>
-                                <v-list-item-content eager="true" class="d-none d-lg-flex" color="grey">
-                                  <v-img eager="true" contain max-height="400" :src="char.src"
-                                    class="white--text align-end"></v-img>
+                                <v-list-item-content eager class="d-none d-lg-flex" color="grey">
+                                  <v-img eager contain max-height="400" :src="char.src" class="white--text align-end">
+                                  </v-img>
                                 </v-list-item-content>
 
-                                <v-list-item-content eager="true">
+                                <v-list-item-content eager>
+
+
                                   <v-card-text class="text-center">
                                     <v-row>
                                       <v-col>
-                                        <v-img contain max-height="400" :eager="true" :src="char.src"
+                                        <v-img contain max-height="400" eager :src="char.src"
                                           class="d-flex d-lg-none white--text align-end"></v-img>
                                       </v-col>
+
                                       <v-col cols="12">
                                         <h1>{{ char.name }}</h1>
                                         <hr>
@@ -144,8 +146,10 @@
                                         <h4>{{ char.desc }}</h4>
                                         <hr>
                                       </v-col>
-                                      <v-col cols="12" lg="4" v-for="stat in char.stats" :key="stat.key">
-                                        <h2>{{ stat.title }}</h2>
+
+                                      <v-col cols="12" lg="4" v-for="(stat, name, index) in char.stats" :key="stat.key">
+
+                                        <h2>{{ categories[index] }}</h2>
                                         <h3>{{ stat.num }}%</h3>
                                         <hr>
                                       </v-col>
@@ -191,8 +195,8 @@
                             <v-tabs v-model="statBar" vertical fixed-tabs>
                               <v-tabs-slider></v-tabs-slider>
 
-                              <v-tab v-for="attri in attr" :key="attri.title">
-                                {{ attri.title }}
+                              <v-tab v-for="attri,label in attr" :key="attri.title">
+                                {{ label}}
                               </v-tab>
                             </v-tabs>
 
@@ -203,10 +207,10 @@
                                 <v-card flat>
                                   <v-card-text>
                                     <v-row class="stretch" align="center">
-                                      <v-col cols="12" sm="4" v-for="stat in attri" :key="stat.title">
-                                        <h1>{{ stat.title }}</h1>
-                                        <span v-for="(at) in stat.val" :key="at.title">
-                                          <h2>{{ at.title }}:{{ at.percent }}% - {{ at.total }}</h2>
+                                      <v-col cols="12" sm="4" v-for="stat, cat in attri" :key="stat.title">
+                                        <h1>{{ cat }}</h1>
+                                        <span v-for="(at, index) in stat.val" :key="at.title">
+                                          <h2>{{index}}:{{ at.percent }}%</h2>
                                         </span>
                                       </v-col>
                                     </v-row>
@@ -260,10 +264,34 @@
                               <v-tab-item key="1">
                                 <v-card flat>
                                   <v-card-text>
-                                    Filters Here:
+                                    <v-row>
+                                      <div v-for="item, label,index in attr" :key="label">
+                                        {{ label }}
+                                        <v-col cols="12" sm="4" md="4">
+
+                                          <v-checkbox multiple v-model="filter[index]" v-for="element, keyed in item" :label="keyed"
+                                            :value="keyed" :key="keyed" @change="filterMethod(index)"></v-checkbox>
+                                        </v-col>
+
+                                      </div>
+                                    </v-row>
+
+
                                   </v-card-text>
                                 </v-card>
                               </v-tab-item>
+
+                              <v-tab-item key="2">
+                                <v-card flat>
+                                  <v-card-text>
+                                    <v-checkbox v-model="adultMode" @click="toggleLabel(adultMode)" label="Adult Mode">
+                                    </v-checkbox>
+                                  </v-card-text>
+                                </v-card>
+                              </v-tab-item>
+
+
+
                             </v-tabs-items>
                           </v-col>
                         </v-row>
@@ -313,5 +341,12 @@
   .mobile-text {
     text-align: center !important;
   }
+}
+
+.background {
+
+  background-image: url("../assets/WoodGrain.png");
+  background-repeat: round round;
+
 }
 </style>
