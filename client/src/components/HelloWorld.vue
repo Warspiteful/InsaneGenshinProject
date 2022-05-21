@@ -4,7 +4,7 @@
     <v-app-bar app color="primary" dark >
       <v-row>
         <v-col class="mobile-text" cols="12">
-          <h1>Genshin Fuck Marry Kill</h1>
+          <h1>Genshin {{categories.join(" ")}}</h1>
         </v-col>
       </v-row>
     </v-app-bar>
