@@ -2,18 +2,22 @@
 
 <template>
   <v-app>
+    <PageLoader/>
+
       <HelloWorld/>
   </v-app>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld';
+import PageLoader from './components/PageLoader';
 
 export default {
   name: 'App',
 
   components: {
     HelloWorld,
+    PageLoader
   },
 
   data: () => ({

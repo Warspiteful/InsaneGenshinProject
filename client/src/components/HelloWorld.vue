@@ -314,7 +314,8 @@
     </v-content>
   </v-app>
 </template>
- <script src="./controller.js" ></script>
+ <script src="./controller.js" >
+</script>
 
 
 <style>

@@ -2,6 +2,7 @@ import draggable from 'vuedraggable'
 import axios from 'axios'
 import Vue from 'vue'
 import VueMeta from 'vue-meta'
+
 Vue.use(VueMeta)
 
 export default {
