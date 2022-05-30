@@ -34,6 +34,23 @@
 
       <v-container fluid>
         <v-row class="text-center" align-center>
+        <v-dialog
+        v-model="instr"
+        width="500"
+      >
+  
+        <v-card>
+          <v-card-title class="text-h5 grey lighten-2">
+            Instructions
+          </v-card-title>
+  
+          <v-card-text>
+          For each round, you will be given three characters. Drag them to the category you see fit and hit submit.
+          </v-card-text>
+  
+          <v-divider></v-divider>
+        </v-card>
+      </v-dialog>
 
 
           <v-col cols="12">
@@ -207,10 +224,10 @@
                                 <v-card flat>
                                   <v-card-text>
                                     <v-row class="stretch" align="center">
-                                      <v-col cols="12" sm="4" v-for="stat, cat in attri" :key="stat.title">
-                                        <h1>{{ cat }}</h1>
-                                        <span v-for="(at, index) in stat.val" :key="at.title">
-                                          <h2>{{index}}:{{ at.percent }}%</h2>
+                                      <v-col cols="12" sm="4" v-for="stat, cat, index in attri" :key="stat.title">
+                                        <h1>{{categories[index]}}</h1>
+                                        <span v-for="(at, _, index) in stat.val" :key="at.title">
+                                          <h2>{{categories[index]}}:{{ at.percent }}%</h2>
                                         </span>
                                       </v-col>
                                     </v-row>

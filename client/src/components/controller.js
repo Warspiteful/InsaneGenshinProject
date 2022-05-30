@@ -13,7 +13,7 @@ export default {
     },
 
     metaInfo: {
-        title: 'Genshin Fuck Marry Kill',
+        title: 'Genshin Character Selector',
         // override the parent template and just use the above title only
         titleTemplate: null,
 
@@ -234,6 +234,7 @@ export default {
     },
 
     data: () => ({
+        instr: true,
         filter: [
             [],
             [],
