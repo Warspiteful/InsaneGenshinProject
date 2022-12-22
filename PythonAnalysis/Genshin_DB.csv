@@ -1,0 +1,38 @@
+ID,charName,title,Image,Gender,Element,Weapon,Region,f_avg,m_avg,k_avg
+0,"Shikanoin Heizou ","Analytical Harmony",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1653949178/genshin-cards/Character_Shikanoin_Heizou_Card_mewghy.webp,Male,Anemo,Catalyst,Inazuma,0.0000,1.0000,0.0000
+2,Albedo,Kreideprinz,https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp,Male,Geo,Sword,Mondstadt,0.1500,0.3000,0.5500
+3,Amber,"Champion Glider",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Amber_Card_iyxom0.webp,Female,Pyro,Bow,Mondstadt,0.0769,0.5385,0.3846
+4,"Arataki Itto","Hanamizaka Heroics",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Arataki_Itto_Card_dnozl9.webp,Male,Geo,Claymore,Inazuma,0.4000,0.5500,0.0500
+5,Beidou,"Uncrowned Lord of the Ocean",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Beidou_Card_uucri2.webp,Female,Electro,Claymore,Liyue,0.5926,0.3704,0.0370
+6,Childe,"Eleventh of the Fatui Harbingers",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144526/genshin-cards/Character_Tartaglia_Card_eajswq.webp,Male,Hydro,Bow,Snezhnaya,0.2258,0.0645,0.7097
+7,Diluc,"The Dark Side of Dawn",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144527/genshin-cards/Character_Diluc_Card_v8efsy.webp,Male,Pyro,Claymore,Mondstadt,0.2000,0.2000,0.6000
+8,Eula,"Dance of the Shimmering Wave",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144527/genshin-cards/Character_Eula_Card_jrbsey.webp,Female,Cryo,Claymore,Mondstadt,0.4500,0.4500,0.1000
+9,Ganyu,"Plenilune Gaze",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp,Female,Cryo,Bow,Liyue,0.3043,0.5217,0.1739
+10,Gorou,"Canine Warrior",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Gorou_Card_dpcevp.webp,Male,Geo,Bow,Inazuma,0.2000,0.2000,0.6000
+11,"Hu Tao","Fragrance in Thaw",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Hu_Tao_Card_uvuojn.webp,Female,Pyro,Catalyst,Liyue,0.2692,0.3462,0.3846
+12,Jean,"Dandelion Knight",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp,Female,Anemo,Sword,Mondstadt,0.4800,0.3200,0.2000
+13,"Kaedehara Kazuha","Scarlet Leaves Pursue Wild Waves",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Kaedehara_Kazuha_Card_lf1thw.webp,Male,Anemo,Sword,Inazuma,0.1481,0.2593,0.5926
+14,Kaeya,"Frostwind Swordsman",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Kaeya_Card_cuiitn.webp,Male,Cryo,Sword,Mondstadt,0.4800,0.3600,0.1600
+15,"Kamisato Ayaka","Frostflake Heron",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Kamisato_Ayaka_Card_rnm4e0.webp,Female,Cryo,Sword,Inazuma,0.2609,0.3043,0.4348
+16,"Kamisato Ayato","Pillar of Fortitude",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Kamisato_Ayato_Card_fppmsd.webp,Male,Hydro,Sword,Inazuma,0.1905,0.1905,0.6190
+17,Keqing,"Driving Thunder",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Keqing_Card_qij7o8.webp,Female,Electro,Sword,Liyue,0.2857,0.5143,0.2000
+18,"Kujou Sara","Crowfeather Kaburaya",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144525/genshin-cards/Character_Kujou_Sara_Card_kzf6tf.webp,Female,Electro,Bow,Inazuma,0.4444,0.1111,0.4444
+19,Lisa,"Witch of Purple Rose",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144525/genshin-cards/Character_Lisa_Card_s0mdxb.webp,Female,Electro,Catalyst,Mondstadt,0.5417,0.2917,0.1667
+21,Mona,"Astral Reflection",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144525/genshin-cards/Character_Mona_Card_zzudib.webp,Female,Hydro,Catalyst,Mondstadt,0.7692,0.2051,0.0256
+22,Ningguang,"Eclipsing Star",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144525/genshin-cards/Character_Ningguang_Card_of2nh9.webp,Female,Geo,Catalyst,Liyue,0.5238,0.2381,0.2381
+23,"Raiden Shogun","Plane of Euthymia",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144525/genshin-cards/Character_Raiden_Shogun_Card_zx1vyj.webp,Female,Electro,Polearm,Inazuma,0.6154,0.1154,0.2692
+24,Rosaria,"Thorny Benevolence",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144525/genshin-cards/Character_Rosaria_Card_aelb76.webp,Female,Cryo,Polearm,Mondstadt,0.4286,0.3333,0.2381
+25,"Sangonomiya Kokomi","Pearl of Wisdom",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144525/genshin-cards/Character_Sangonomiya_Kokomi_Card_z5a3pb.webp,Female,Hydro,Catalyst,Inazuma,0.2857,0.3810,0.3333
+26,Shenhe,"Lonesome Transcendence",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144526/genshin-cards/Character_Shenhe_Card_ms7zev.webp,Female,Cryo,Polearm,Liyue,0.4375,0.1250,0.4375
+27,Sucrose,"Harmless Sweetie",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144526/genshin-cards/Character_Sucrose_Card_nqkjnj.webp,Female,Anemo,Catalyst,Mondstadt,0.0000,0.7500,0.2500
+28,Thoma,"Protector From Afar",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144526/genshin-cards/Character_Thoma_Card_czjd7v.webp,Male,Pyro,Polearm,Inazuma,0.1071,0.6429,0.2500
+29,Venti,"Windborne Bard",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144526/genshin-cards/Character_Venti_Card_ferkfu.webp,Male,Anemo,Bow,Mondstadt,0.0000,0.3500,0.6500
+30,"Yae Miko","Astute Amusement",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144526/genshin-cards/Character_Yae_Miko_Card_cwnnqu.webp,Female,Electro,Catalyst,Inazuma,0.5333,0.3000,0.1667
+31,Yanfei,"Wise Innocence",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144526/genshin-cards/Character_Yanfei_Card_pmylwf.webp,Female,Pyro,Catalyst,Liyue,0.2857,0.2857,0.4286
+32,Yoimiya,"Frolicking Flames",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144527/genshin-cards/Character_Yoimiya_Card_kpzoww.webp,Female,Pyro,Bow,Inazuma,0.3750,0.5625,0.0625
+33,"Yun Jin","Stage Lucida",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144527/genshin-cards/Character_Yun_Jin_Card_zdneh0.webp,Female,Geo,Polearm,Liyue,0.1905,0.5714,0.2381
+34,Zhongli,"Vago Mundo",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144527/genshin-cards/Character_Zhongli_Card_druawc.webp,Male,Geo,Polearm,Liyue,0.1071,0.2857,0.6071
+35,Xiao,"Vigilant Yaksha",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144526/genshin-cards/Character_Xiao_Card_xaw0at.webp,Male,Anemo,Polearm,Liyue,0.0417,0.0417,0.9167
+36,Yelan,"Valley Orchid",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144526/genshin-cards/Character_Yelan_Card_zhvpns.webp,Female,Hydro,Bow,Liyue,0.6400,0.2800,0.0800
+37,"Kuki Shinobu","Mender of Tribulations",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144525/genshin-cards/Character_Kuki_Shinobu_Card_vtvhno.webp,Female,Electro,Sword,Inazuma,0.4815,0.4444,0.0741
+38,Xinyan,"Blazing Riff",https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652339371/genshin-cards/Character_Xinyan_Card_cfff4m.webp,Female,Pyro,Claymore,Liyue,0.2308,0.4615,0.3077
