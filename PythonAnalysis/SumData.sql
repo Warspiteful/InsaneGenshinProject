@@ -1,0 +1,1 @@
+SELECT charName, avg( m_val+k_val+f_val ) f_avg FROM heroku_b3548b4ef16b308.characterdb;

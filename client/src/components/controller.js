@@ -2,6 +2,7 @@ import draggable from 'vuedraggable'
 import axios from 'axios'
 import Vue from 'vue'
 import VueMeta from 'vue-meta'
+
 Vue.use(VueMeta)
 
 export default {
@@ -12,7 +13,7 @@ export default {
     },
 
     metaInfo: {
-        title: 'Genshin Fuck Marry Kill',
+        title: 'Genshin Character Selector',
         // override the parent template and just use the above title only
         titleTemplate: null,
 
@@ -233,6 +234,7 @@ export default {
     },
 
     data: () => ({
+        instr: true,
         filter: [
             [],
             [],
@@ -250,18 +252,18 @@ export default {
         navBarCat: ['Characters', 'Analysis', 'Settings'],
         categories: ['Friend', 'Marry', 'Kill'],
         cards: [{
-                title: 'Childe',
-                src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Albedo_Card_irlhqz.webp',
+                title: '',
+                src: '',
                 flex: 4,
             },
             {
-                title: 'Keqing',
-                src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144524/genshin-cards/Character_Jean_Card_pkkijg.webp',
+                title: '',
+                src: 'p',
                 flex: 4,
             },
             {
-                title: 'Ganyu',
-                src: 'https://res.cloudinary.com/dmsbtdl3p/image/upload/v1652144523/genshin-cards/Character_Ganyu_Card_bsvedg.webp',
+                title: '',
+                src: '',
                 flex: 4,
             },
         ],

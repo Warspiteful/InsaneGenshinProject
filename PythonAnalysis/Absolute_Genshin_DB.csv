@@ -1,0 +1,38 @@
+charName,Gender,Element,Weapon,Region,f_val,m_val,k_val,sum
+"Shikanoin Heizou ",Male,Anemo,Catalyst,Inazuma,0,1,0,1
+Albedo,Male,Geo,Sword,Mondstadt,3,6,11,20
+Amber,Female,Pyro,Bow,Mondstadt,1,7,5,13
+"Arataki Itto",Male,Geo,Claymore,Inazuma,8,11,1,20
+Beidou,Female,Electro,Claymore,Liyue,16,10,1,27
+Childe,Male,Hydro,Bow,Snezhnaya,7,2,22,31
+Diluc,Male,Pyro,Claymore,Mondstadt,3,3,9,15
+Eula,Female,Cryo,Claymore,Mondstadt,9,9,2,20
+Ganyu,Female,Cryo,Bow,Liyue,7,12,4,23
+Gorou,Male,Geo,Bow,Inazuma,4,4,12,20
+"Hu Tao",Female,Pyro,Catalyst,Liyue,7,9,10,26
+Jean,Female,Anemo,Sword,Mondstadt,12,8,5,25
+"Kaedehara Kazuha",Male,Anemo,Sword,Inazuma,4,7,16,27
+Kaeya,Male,Cryo,Sword,Mondstadt,12,9,4,25
+"Kamisato Ayaka",Female,Cryo,Sword,Inazuma,6,7,10,23
+"Kamisato Ayato",Male,Hydro,Sword,Inazuma,4,4,13,21
+Keqing,Female,Electro,Sword,Liyue,10,18,7,35
+"Kujou Sara",Female,Electro,Bow,Inazuma,8,2,8,18
+Lisa,Female,Electro,Catalyst,Mondstadt,13,7,4,24
+Mona,Female,Hydro,Catalyst,Mondstadt,30,8,1,39
+Ningguang,Female,Geo,Catalyst,Liyue,11,5,5,21
+"Raiden Shogun",Female,Electro,Polearm,Inazuma,16,3,7,26
+Rosaria,Female,Cryo,Polearm,Mondstadt,9,7,5,21
+"Sangonomiya Kokomi",Female,Hydro,Catalyst,Inazuma,6,8,7,21
+Shenhe,Female,Cryo,Polearm,Liyue,14,4,14,32
+Sucrose,Female,Anemo,Catalyst,Mondstadt,0,12,4,16
+Thoma,Male,Pyro,Polearm,Inazuma,3,18,7,28
+Venti,Male,Anemo,Bow,Mondstadt,0,7,13,20
+"Yae Miko",Female,Electro,Catalyst,Inazuma,16,9,5,30
+Yanfei,Female,Pyro,Catalyst,Liyue,4,4,6,14
+Yoimiya,Female,Pyro,Bow,Inazuma,12,18,2,32
+"Yun Jin",Female,Geo,Polearm,Liyue,4,12,5,21
+Zhongli,Male,Geo,Polearm,Liyue,3,8,17,28
+Xiao,Male,Anemo,Polearm,Liyue,1,1,22,24
+Yelan,Female,Hydro,Bow,Liyue,16,7,2,25
+"Kuki Shinobu",Female,Electro,Sword,Inazuma,13,12,2,27
+Xinyan,Female,Pyro,Claymore,Liyue,3,6,4,13
